@@ -1,7 +1,7 @@
-#import "RNTSignaturePad.h"
+#import "RCTSignaturePad.h"
 #import "SignaturePad.h"
 
-@implementation RNTSignaturePad
+@implementation RCTSignaturePad
 
 RCT_EXPORT_MODULE()
 

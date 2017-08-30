@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
-const { RNTSignaturePad } = require('NativeModules');
-class SignaturePad extends react_1.default.Component {
+import React from 'react';
+import { requireNativeComponent } from 'react-native';
+const RCTSignaturePad = requireNativeComponent('RCTSignaturePad');
+export default class SignaturePad extends React.Component {
     render() {
         // TODO:
-        return <RNTSignaturePad />;
+        return <RCTSignaturePad />;
     }
 }
-exports.default = SignaturePad;

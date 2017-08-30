@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13BE3DEE1AC21097009241FE /* RNTSignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RNTSignaturePad.m */; };
+		13BE3DEE1AC21097009241FE /* RCTSignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RCTSignaturePad.m */; };
 		D84FB7D41F57666E00C6607D /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D84FB7D31F57666E00C6607D /* SignaturePad.m */; };
 /* End PBXBuildFile section */
 
@@ -25,8 +25,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libSignaturePad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSignaturePad.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		13BE3DEC1AC21097009241FE /* RNTSignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTSignaturePad.h; sourceTree = "<group>"; };
-		13BE3DED1AC21097009241FE /* RNTSignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTSignaturePad.m; sourceTree = "<group>"; };
+		13BE3DEC1AC21097009241FE /* RCTSignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSignaturePad.h; sourceTree = "<group>"; };
+		13BE3DED1AC21097009241FE /* RCTSignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSignaturePad.m; sourceTree = "<group>"; };
 		D84FB7D21F57666E00C6607D /* SignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePad.h; sourceTree = "<group>"; };
 		D84FB7D31F57666E00C6607D /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePad.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,8 +55,8 @@
 			children = (
 				D84FB7D21F57666E00C6607D /* SignaturePad.h */,
 				D84FB7D31F57666E00C6607D /* SignaturePad.m */,
-				13BE3DEC1AC21097009241FE /* RNTSignaturePad.h */,
-				13BE3DED1AC21097009241FE /* RNTSignaturePad.m */,
+				13BE3DEC1AC21097009241FE /* RCTSignaturePad.h */,
+				13BE3DED1AC21097009241FE /* RCTSignaturePad.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			indentWidth = 4;
@@ -120,7 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D84FB7D41F57666E00C6607D /* SignaturePad.m in Sources */,
-				13BE3DEE1AC21097009241FE /* RNTSignaturePad.m in Sources */,
+				13BE3DEE1AC21097009241FE /* RCTSignaturePad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

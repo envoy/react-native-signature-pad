@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint-config-standard"],
+  "rules": {
+    "no-unused-variable": false,
+    "ter-indent": false,
+    "object-literal-shorthand": true,
+    "ter-arrow-body-style": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "signature-pad",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react-native"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Fang-Pen Lin",
+    "email": "hello@fangpenlin.com",
+    "url": "https://fangpenlin.com"
+  },
+  "rnpm": {},
+  "devDependencies": {
+    "@types/node": "^8.0.26",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.4.2"
+  }
+}

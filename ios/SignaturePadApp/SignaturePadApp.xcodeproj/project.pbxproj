@@ -14,6 +14,8 @@
 		D84FB8791F57925700C6607D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84FB8771F57925700C6607D /* LaunchScreen.storyboard */; };
 		D84FB89A1F57930700C6607D /* FrozenCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8981F57930700C6607D /* FrozenCanvas.swift */; };
 		D84FB89B1F57930700C6607D /* SignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8991F57930700C6607D /* SignaturePad.swift */; };
+		D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BD1F58943900A54A81 /* SignaturePainter.swift */; };
+		D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D84FB87A1F57925700C6607D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D84FB8981F57930700C6607D /* FrozenCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrozenCanvas.swift; path = ../../FrozenCanvas.swift; sourceTree = "<group>"; };
 		D84FB8991F57930700C6607D /* SignaturePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignaturePad.swift; path = ../../SignaturePad.swift; sourceTree = "<group>"; };
+		D85085BD1F58943900A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignaturePainter.swift; path = ../../SignaturePainter.swift; sourceTree = "<group>"; };
+		D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleSignaturePainter.swift; path = ../../SimpleSignaturePainter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			children = (
 				D84FB86E1F57925700C6607D /* AppDelegate.swift */,
 				D84FB8701F57925700C6607D /* ViewController.swift */,
+				D85085BD1F58943900A54A81 /* SignaturePainter.swift */,
+				D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */,
 				D84FB8981F57930700C6607D /* FrozenCanvas.swift */,
 				D84FB8991F57930700C6607D /* SignaturePad.swift */,
 				D84FB8721F57925700C6607D /* Main.storyboard */,
@@ -147,6 +153,8 @@
 				D84FB89A1F57930700C6607D /* FrozenCanvas.swift in Sources */,
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
 				D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */,
+				D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */,
+				D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +320,7 @@
 				D84FB87F1F57925700C6607D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

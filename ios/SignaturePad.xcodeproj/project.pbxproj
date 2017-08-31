@@ -10,6 +10,8 @@
 		13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */; };
 		D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8391F578D1000C6607D /* SignaturePad.swift */; };
 		D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */; };
+		D85085BA1F58914600A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085B91F58914600A54A81 /* SignaturePainter.swift */; };
+		D85085BC1F5892B700A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,8 @@
 		D84FB88D1F5792C400C6607D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D84FB8901F5792C400C6607D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D84FB8921F5792C400C6607D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D85085B91F58914600A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignaturePainter.swift; sourceTree = "<group>"; };
+		D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleSignaturePainter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D85085B91F58914600A54A81 /* SignaturePainter.swift */,
+				D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */,
 				D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */,
 				D84FB8391F578D1000C6607D /* SignaturePad.swift */,
 				13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */,
@@ -147,6 +153,8 @@
 			files = (
 				D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */,
 				D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */,
+				D85085BC1F5892B700A54A81 /* SimpleSignaturePainter.swift in Sources */,
+				D85085BA1F58914600A54A81 /* SignaturePainter.swift in Sources */,
 				13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

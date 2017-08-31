@@ -8,29 +8,24 @@
 
 import UIKit
 
-class Line {
-    var lastPoint: CGPoint
-
-    init(startPoint: CGPoint) {
-        lastPoint = startPoint
-    }
-}
-
 final class SignaturePad: UIView {
     fileprivate var lines: [UITouch: Line] = [:]
     fileprivate var frozenCanvas: FrozenCanvas!
+    fileprivate var painter: SignaturePainter
 
     var frozenImage: CGImage {
         return frozenCanvas.snapshot
     }
 
     override init(frame: CGRect) {
+        painter = SimpleSignaturePainter()
         super.init(frame: frame)
         frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
+        painter = SimpleSignaturePainter()
         super.init(coder: aDecoder)
         frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
@@ -63,28 +58,19 @@ extension SignaturePad {
             guard touch.view === self else {
                 continue
             }
-            let line = Line(startPoint: touch.preciseLocation(in: self))
+            let line = painter.addLine()
             lines[touch] = line
-
-            let coalescedTouchs = event?.coalescedTouches(for: touch) ?? []
-            print("@@@@@@ \(touch) \(coalescedTouchs)")
-            // TODO: draw stuff?
-            /*
-            if let line = lines[touch] {
-                if let lastTouch = coalescedTouchs.last {
-                    line.lastPoint = lastTouch.location(in: self)
-                    print("!!!!! first last point for \(touch)")
-                }
-            }*/
+            frozenCanvas.drawOnTop { (context) in
+                line.start(
+                    context: context,
+                    point: pointForTouch(touch)
+                )
+            }
         }
-        // TODO:
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.frozenCanvas.drawOnTop { (context) in
-            context.saveGState()
-            context.setLineCap(.round)
-            context.setStrokeColor(UIColor.black.cgColor)
             for touch in touches {
                 // do not process touches from subviews
                 guard touch.view === self else {
@@ -94,30 +80,52 @@ extension SignaturePad {
                     continue
                 }
                 let coalescedTouchs = event?.coalescedTouches(for: touch) ?? []
-                let points = coalescedTouchs.map { [unowned self] coalescedTouch in
-                    return coalescedTouch.preciseLocation(in: self)
+                for coalescedTouch in coalescedTouchs {
+                    line.add(
+                        context: context,
+                        // TODO: the date
+                        point: pointForTouch(coalescedTouch)
+                    )
                 }
-                context.beginPath()
-                context.move(to: line.lastPoint)
-                for point in points {
-                    context.addLine(to: point)
-                    context.setLineWidth(5)
-                }
-                context.strokePath()
-                line.lastPoint = points.last!
             }
-            // XXX:
-            context.restoreGState()
         }
         // TODO: find a smarter way to determine region for redrew
         setNeedsDisplay()
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // TODO:
+        self.frozenCanvas.drawOnTop { (context) in
+            for touch in touches {
+                // do not process touches from subviews
+                guard touch.view === self else {
+                    continue
+                }
+                guard let line = lines[touch] else {
+                    continue
+                }
+                let coalescedTouchs = event?.coalescedTouches(for: touch) ?? []
+                for coalescedTouch in coalescedTouchs {
+                    line.end(
+                        context: context,
+                        point: pointForTouch(coalescedTouch)
+                    )
+                }
+            }
+        }
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         // TODO:
+    }
+
+    private func pointForTouch(_ touch: UITouch) -> Point {
+        return Point(
+            position: touch.location(in: self),
+            timestamp: touch.timestamp,
+            stylus: touch.type == .stylus,
+            force: touch.force,
+            altitudeAngle: touch.altitudeAngle,
+            azimuthAngle: touch.azimuthAngle(in: self)
+        )
     }
 }

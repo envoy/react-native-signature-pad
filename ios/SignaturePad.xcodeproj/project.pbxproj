@@ -12,6 +12,7 @@
 		D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */; };
 		D85085BA1F58914600A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085B91F58914600A54A81 /* SignaturePainter.swift */; };
 		D85085BC1F5892B700A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */; };
+		D85085C21F589DD700A54A81 /* DebugSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		D84FB8921F5792C400C6607D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D85085B91F58914600A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignaturePainter.swift; sourceTree = "<group>"; };
 		D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleSignaturePainter.swift; sourceTree = "<group>"; };
+		D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugSignaturePainter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				D85085B91F58914600A54A81 /* SignaturePainter.swift */,
+				D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */,
 				D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */,
 				D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */,
 				D84FB8391F578D1000C6607D /* SignaturePad.swift */,
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85085C21F589DD700A54A81 /* DebugSignaturePainter.swift in Sources */,
 				D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */,
 				D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */,
 				D85085BC1F5892B700A54A81 /* SimpleSignaturePainter.swift in Sources */,

@@ -10,9 +10,11 @@ import UIKit
 
 final class SignaturePad: UIView {
     fileprivate var frozenCanvas: FrozenCanvas!
-    fileprivate var debugFrozenCanvas: FrozenCanvas!
     fileprivate var lines: [UITouch: Line] = [:]
     fileprivate var painter: SignaturePainter
+
+    var debug: Bool = false
+    fileprivate var debugFrozenCanvas: FrozenCanvas!
     fileprivate var debugLines: [UITouch: Line] = [:]
     fileprivate var debugPainter: SignaturePainter?
 
@@ -25,20 +27,16 @@ final class SignaturePad: UIView {
     }
 
     override init(frame: CGRect) {
-        painter = SimpleSignaturePainter()
-        debugPainter = DebugSignaturePainter()
+        painter = SmoothSignaturePainter()
         super.init(frame: frame)
         frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
-        debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        painter = SimpleSignaturePainter()
-        debugPainter = DebugSignaturePainter()
+        painter = SmoothSignaturePainter()
         super.init(coder: aDecoder)
         frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
-        debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
     }
 
@@ -46,11 +44,20 @@ final class SignaturePad: UIView {
         removeObserver(self, forKeyPath: "frame")
     }
 
+    func initDebug() {
+        if debug {
+            debugPainter = DebugSignaturePainter()
+            debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        }
+    }
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "frame") {
             // TODO: copy image from original canvas
             frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
-            debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+            if debug {
+                debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+            }
         }
     }
 }

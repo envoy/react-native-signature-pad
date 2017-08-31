@@ -17,6 +17,7 @@
 		D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BD1F58943900A54A81 /* SignaturePainter.swift */; };
 		D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */; };
 		D85085C41F589E7900A54A81 /* DebugSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */; };
+		D85085C81F58CB6100A54A81 /* SmoothSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D85085BD1F58943900A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignaturePainter.swift; path = ../../SignaturePainter.swift; sourceTree = "<group>"; };
 		D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleSignaturePainter.swift; path = ../../SimpleSignaturePainter.swift; sourceTree = "<group>"; };
 		D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugSignaturePainter.swift; path = ../../DebugSignaturePainter.swift; sourceTree = "<group>"; };
+		D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmoothSignaturePainter.swift; path = ../../SmoothSignaturePainter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				D85085BD1F58943900A54A81 /* SignaturePainter.swift */,
 				D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */,
 				D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */,
+				D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */,
 				D84FB8981F57930700C6607D /* FrozenCanvas.swift */,
 				D84FB8991F57930700C6607D /* SignaturePad.swift */,
 				D84FB8721F57925700C6607D /* Main.storyboard */,
@@ -158,6 +161,7 @@
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
 				D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */,
 				D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */,
+				D85085C81F58CB6100A54A81 /* SmoothSignaturePainter.swift in Sources */,
 				D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

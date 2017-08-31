@@ -13,6 +13,7 @@
 		D85085BA1F58914600A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085B91F58914600A54A81 /* SignaturePainter.swift */; };
 		D85085BC1F5892B700A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */; };
 		D85085C21F589DD700A54A81 /* DebugSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */; };
+		D85085C61F58CB5700A54A81 /* SmoothSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C51F58CB5700A54A81 /* SmoothSignaturePainter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		D85085B91F58914600A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignaturePainter.swift; sourceTree = "<group>"; };
 		D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleSignaturePainter.swift; sourceTree = "<group>"; };
 		D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugSignaturePainter.swift; sourceTree = "<group>"; };
+		D85085C51F58CB5700A54A81 /* SmoothSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmoothSignaturePainter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				D85085B91F58914600A54A81 /* SignaturePainter.swift */,
 				D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */,
 				D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */,
+				D85085C51F58CB5700A54A81 /* SmoothSignaturePainter.swift */,
 				D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */,
 				D84FB8391F578D1000C6607D /* SignaturePad.swift */,
 				13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */,
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85085C61F58CB5700A54A81 /* SmoothSignaturePainter.swift in Sources */,
 				D85085C21F589DD700A54A81 /* DebugSignaturePainter.swift in Sources */,
 				D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */,
 				D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */,

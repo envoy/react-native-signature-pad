@@ -15,22 +15,26 @@ final class SignaturePad: UIView {
         return frozenCanvas.snapshot
     }
 
-    override var bounds: CGRect {
-        didSet {
-            // TODO: copy original canvas image and draw it onto the new one so that we won't
-            // lost the signature
-            self.frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
-        }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
+        frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
+        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+    }
+
+    deinit {
+        removeObserver(self, forKeyPath: "frame")
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (keyPath == "frame") {
+            self.frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        }
     }
 }
 

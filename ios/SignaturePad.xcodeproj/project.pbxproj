@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */; };
+		D84D96671F59E13300E6423D /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D96661F59E13300E6423D /* Bezier.swift */; };
+		D84D966B1F59E43A00E6423D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D966A1F59E43A00E6423D /* Utils.swift */; };
 		D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8391F578D1000C6607D /* SignaturePad.swift */; };
 		D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */; };
 		D85085BA1F58914600A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085B91F58914600A54A81 /* SignaturePainter.swift */; };
@@ -32,6 +34,8 @@
 		134814201AA4EA6300B7C361 /* libSignaturePad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSignaturePad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSignaturePadManager.h; sourceTree = "<group>"; };
 		13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSignaturePadManager.m; sourceTree = "<group>"; };
+		D84D96661F59E13300E6423D /* Bezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bezier.swift; sourceTree = "<group>"; };
+		D84D966A1F59E43A00E6423D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D84FB8381F578D1000C6607D /* SignaturePad-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SignaturePad-Bridging-Header.h"; sourceTree = "<group>"; };
 		D84FB8391F578D1000C6607D /* SignaturePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignaturePad.swift; sourceTree = "<group>"; };
 		D84FB83B1F578E0200C6607D /* FrozenCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrozenCanvas.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D84D966A1F59E43A00E6423D /* Utils.swift */,
+				D84D96661F59E13300E6423D /* Bezier.swift */,
 				D85085B91F58914600A54A81 /* SignaturePainter.swift */,
 				D85085C11F589DD700A54A81 /* DebugSignaturePainter.swift */,
 				D85085BB1F5892B700A54A81 /* SimpleSignaturePainter.swift */,
@@ -157,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84D96671F59E13300E6423D /* Bezier.swift in Sources */,
 				D85085C61F58CB5700A54A81 /* SmoothSignaturePainter.swift in Sources */,
+				D84D966B1F59E43A00E6423D /* Utils.swift in Sources */,
 				D85085C21F589DD700A54A81 /* DebugSignaturePainter.swift in Sources */,
 				D84FB83A1F578D1000C6607D /* SignaturePad.swift in Sources */,
 				D84FB83C1F578E0200C6607D /* FrozenCanvas.swift in Sources */,

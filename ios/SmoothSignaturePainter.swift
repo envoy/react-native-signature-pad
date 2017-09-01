@@ -94,19 +94,10 @@ final class SmoothLine: Line {
         return max(maxWidth / (velocity + 1), minWidth)
     }
 
-    /// Calculate distance from source to dest
-    static func distanceFrom(src p0: CGPoint, to p1: CGPoint) -> CGFloat {
-        let vector = CGVector(
-            dx: p1.x - p0.x,
-            dy: p1.y - p0.y
-        )
-        return sqrt((vector.dx * vector.dx) + (vector.dy * vector.dy))
-    }
-
     /// Calculate velocity from source to dest
     static func velocityFrom(src p0: Point, to p1: Point) -> CGFloat {
         let timeDelta = p1.timestamp - p0.timestamp
-        let distance = distanceFrom(src: p0.position, to: p1.position)
+        let distance = Utils.distanceFrom(src: p0.position, to: p1.position)
         return distance / CGFloat(timeDelta)
     }
 

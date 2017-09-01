@@ -74,12 +74,14 @@ final class SignaturePad: UIView {
 extension SignaturePad {
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
+        // For debugging update dirty rect
+        /*
         if !rect.contains(bounds) {
             // XXX:
             context.setFillColor(UIColor(red: 0, green: 0, blue: 1, alpha: 0.5).cgColor)
             context.addRect(rect)
             context.fillPath()
-        }
+        }*/
 
         context.draw(frozenImage, in: bounds)
         if let canvas = debugFrozenCanvas {

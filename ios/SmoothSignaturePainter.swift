@@ -19,7 +19,7 @@ final class SmoothLine: Line {
     private var end = false
 
     private var lastVelocity: CGFloat = 0
-    private var lastWidth: CGFloat = (0.5 + 2.5) / 2
+    private var lastWidth: CGFloat = 0.5
 
     init(updateDirtyRect: @escaping UpdateDirtyRect) {
         self.updateDirtyRect = updateDirtyRect
@@ -93,9 +93,10 @@ final class SmoothLine: Line {
                 control1: c2,
                 control2: c3
             )
+            let steps = max(curve.approximatedLength(), 1)
             drawCruve(
                 context: context,
-                steps: curve.approximatedLength(),
+                steps: steps,
                 startWidth: widths.0,
                 endWidth: widths.1,
                 lineFunc: curve.point
@@ -104,7 +105,7 @@ final class SmoothLine: Line {
         } else {
             let dx = endPoint.x - startPoint.x
             let dy = endPoint.y - startPoint.y
-            let steps = max(Utils.distanceFrom(src: startPoint, to: endPoint), 3)
+            let steps = max(Utils.distanceFrom(src: startPoint, to: endPoint), 1)
             drawCruve(
                 context: context,
                 steps: steps,
@@ -168,7 +169,8 @@ final class SmoothLine: Line {
             (velocityFilterWeight * newVelocity) +
             (1 - velocityFilterWeight) * lastVelocity
         )
-        let newWidth = strokeWidth(velocity: velocity, force: endPoint.force)
+        let effectiveForce = endPoint.stylus ? endPoint.force : 1
+        let newWidth = strokeWidth(velocity: velocity, force: effectiveForce)
         let result: (CGFloat, CGFloat) = (lastWidth, newWidth)
         lastVelocity = velocity
         lastWidth = newWidth
@@ -176,7 +178,6 @@ final class SmoothLine: Line {
     }
 
     private func strokeWidth(velocity: CGFloat, force: CGFloat) -> CGFloat {
-        // TODO: also apply force here
         return max((maxWidth / (velocity + 1)) * force, minWidth)
     }
 

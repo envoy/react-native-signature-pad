@@ -183,7 +183,7 @@ extension SignaturePad {
 
     private func pointForTouch(_ touch: UITouch) -> Point {
         return Point(
-            position: touch.location(in: self),
+            position: touch.preciseLocation(in: self),
             timestamp: touch.timestamp,
             stylus: touch.type == .stylus,
             force: touch.force,

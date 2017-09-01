@@ -12,6 +12,7 @@ final class SignaturePad: UIView {
     fileprivate var frozenCanvas: FrozenCanvas!
     fileprivate var lines: [UITouch: Line] = [:]
     fileprivate var painter: SignaturePainter!
+    fileprivate var dirtyRect: CGRect?
 
     var debug: Bool = false {
         didSet {
@@ -49,6 +50,7 @@ final class SignaturePad: UIView {
 
     func initPad() {
         painter = SmoothSignaturePainter()
+        painter.updateDirtyRect = onUpdateDirtyRect
         frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
         if debug {
@@ -72,9 +74,25 @@ final class SignaturePad: UIView {
 extension SignaturePad {
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()!
+
         context.draw(frozenImage, in: bounds)
         if let canvas = debugFrozenCanvas {
             context.draw(canvas.snapshot, in: bounds)
+        }
+    }
+
+    func onUpdateDirtyRect(rect: CGRect) {
+        if dirtyRect == nil {
+            dirtyRect = rect
+            return
+        }
+        dirtyRect = dirtyRect?.union(rect)
+    }
+
+    func updateNeedsDisplay() {
+        if let rect = dirtyRect {
+            setNeedsDisplay(rect)
+            dirtyRect = nil
         }
     }
 }
@@ -102,8 +120,7 @@ extension SignaturePad {
 
             }
         }
-        // TODO: find a smarter way to determine region for redrew
-        setNeedsDisplay()
+        updateNeedsDisplay()
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -126,8 +143,7 @@ extension SignaturePad {
                 })
             }
         }
-        // TODO: find a smarter way to determine region for redrew
-        setNeedsDisplay()
+        updateNeedsDisplay()
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -152,8 +168,7 @@ extension SignaturePad {
             lines.removeValue(forKey: touch)
             debugLines.removeValue(forKey: touch)
         }
-        // TODO: find a smarter way to determine region for redrew
-        setNeedsDisplay()
+        updateNeedsDisplay()
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias UpdateDirtyRect = ((_ rect: CGRect) -> Void)
+
 struct Point {
     /// Position of the point
     let position: CGPoint
@@ -33,6 +35,9 @@ protocol Line {
 }
 
 protocol SignaturePainter {
+    /// Callback will be called when painter update a region and mark it as dirty
+    /// (needs to be redrew)
+    var updateDirtyRect: UpdateDirtyRect? { get set }
     /// Start a new line on the canvas
     func addLine() -> Line
 }

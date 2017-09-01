@@ -9,6 +9,12 @@
 import UIKit
 
 final class DebugLine: Line {
+    private let updateDirtyRect: UpdateDirtyRect
+
+    init(updateDirtyRect: @escaping UpdateDirtyRect) {
+        self.updateDirtyRect = updateDirtyRect
+    }
+    
     func start(context: CGContext, point: Point) {
         drawPoint(context: context, point: point, color: UIColor.green)
     }
@@ -32,7 +38,13 @@ final class DebugLine: Line {
 
 /// Simple signature painter for drawing debug information
 final class DebugSignaturePainter: SignaturePainter {
+    var updateDirtyRect: UpdateDirtyRect?
+
     func addLine() -> Line {
-        return DebugLine()
+        return DebugLine(updateDirtyRect: onUpdateDirtyRect)
+    }
+
+    private func onUpdateDirtyRect(rect: CGRect) {
+        updateDirtyRect?(rect)
     }
 }

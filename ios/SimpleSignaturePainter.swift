@@ -12,9 +12,11 @@ final class SimpleLine: Line {
     private let width: CGFloat
     private var lastPoint: Point!
     private var end = false
+    private let updateDirtyRect: UpdateDirtyRect
 
-    init(width: CGFloat) {
+    init(updateDirtyRect: @escaping UpdateDirtyRect, width: CGFloat) {
         self.width = width
+        self.updateDirtyRect = updateDirtyRect
     }
 
     func start(context: CGContext, point: Point) {
@@ -47,6 +49,13 @@ final class SimpleLine: Line {
         context.addLine(to: point.position)
         context.strokePath()
         context.restoreGState()
+
+        let dirtyRect = Utils.pointDirtyRect(point: lastPoint.position, size: width)
+            .union(Utils.pointDirtyRect(point: point.position, size: width))
+            // enlarge dirty rect a little bit to be safe
+            .insetBy(dx: -5, dy: -5)
+        updateDirtyRect(dirtyRect)
+
         lastPoint = point
     }
 }
@@ -54,6 +63,10 @@ final class SimpleLine: Line {
 /// Simple signature painter for drawing signature with the most stupid way, mainly for development
 /// and testing purpose only
 final class SimpleSignaturePainter: SignaturePainter {
+    /// Callback will be called when painter update a region and mark it as dirty
+    /// (needs to be redrew)
+    var updateDirtyRect: UpdateDirtyRect?
+
     private let width: CGFloat
 
     init(width: CGFloat = 5) {
@@ -61,6 +74,10 @@ final class SimpleSignaturePainter: SignaturePainter {
     }
     
     func addLine() -> Line {
-        return SimpleLine(width: width)
+        return SimpleLine(updateDirtyRect: onUpdateDirtyRect, width: width)
+    }
+
+    private func onUpdateDirtyRect(rect: CGRect) {
+        updateDirtyRect?(rect)
     }
 }

@@ -12,12 +12,17 @@ final class SmoothLine: Line {
     var velocityFilterWeight: CGFloat = 0.7
     var minWidth: CGFloat = 0.5
     var maxWidth: CGFloat = 2.5
-    
+
+    private let updateDirtyRect: UpdateDirtyRect
     private var points: [Point] = []
     private var end = false
 
     private var lastVelocity: CGFloat = 0
     private var lastWidth: CGFloat = (0.5 + 2.5) / 2
+
+    init(updateDirtyRect: @escaping UpdateDirtyRect) {
+        self.updateDirtyRect = updateDirtyRect
+    }
 
     func start(context: CGContext, point: Point) {
         guard points.count == 0 else {
@@ -41,7 +46,6 @@ final class SmoothLine: Line {
     }
 
     private func drawPoints(context: CGContext) {
-        // TODO: also handle 3 points, make it more responsive
         guard points.count >= 4 else {
             return
         }
@@ -71,6 +75,16 @@ final class SmoothLine: Line {
 
         context.restoreGState()
 
+        // calculate dirty rect
+        let safeWidth = max(widths.0, widths.1)
+        let dirtyRect = Utils
+            .pointDirtyRect(point: points[1].position, size: safeWidth)
+            .union(Utils.pointDirtyRect(point: points[2].position, size: safeWidth))
+            // enlarge the dirty rect a little bit to make it safer
+            .insetBy(dx: -10, dy: -10)
+
+        updateDirtyRect(dirtyRect)
+
         // remove first point, keep only 3 in points, so that when the next point comes in, there
         // will be 4 to draw
         points.removeFirst()
@@ -87,14 +101,11 @@ final class SmoothLine: Line {
         let widthDelta = endWidth - startWidth
         let drawSteps = UInt(floor(curve.approximatedLength())) * 2
         for i in 0 ..< drawSteps {
-            // Calculate the Bezier (x, y) coordinate for this step.
             let t = CGFloat(i) / CGFloat(drawSteps)
             let ttt = t * t * t
             let point = curve.point(atTime: t)
             // TODO: hmmm, not sure why t ^ 3 instead of just t?
             let width = startWidth + (ttt * widthDelta)
-            // TODO: not sure if this is needed
-            //context.move(to: point)
             context.addArc(
                 center: point,
                 radius: width,
@@ -176,7 +187,13 @@ final class SmoothLine: Line {
 /// based on https://medium.com/square-corner-blog/smoother-signatures-be64515adb33
 /// and reference implementation at https://github.com/szimek/signature_pad
 final class SmoothSignaturePainter: SignaturePainter {
+    var updateDirtyRect: UpdateDirtyRect?
+    
     func addLine() -> Line {
-        return SmoothLine()
+        return SmoothLine(updateDirtyRect: onUpdateDirtyRect)
+    }
+
+    private func onUpdateDirtyRect(rect: CGRect) {
+        updateDirtyRect?(rect)
     }
 }

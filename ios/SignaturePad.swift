@@ -33,6 +33,14 @@ final class SignaturePad: UIView {
             painter.color = color
         }
     }
+    /// velocity lowpass filter weight
+    var velocityFilterWeight: CGFloat = 0.7
+    /// Min width for stroking line
+    var minWidth: CGFloat = 0.5
+    /// Max width for stroking line
+    var maxWidth: CGFloat = 2.5
+    /// Minimum distance to be considering too close
+    var minDistance: CGFloat = 0.001
 
     var frozenImage: CGImage {
         return frozenCanvas.snapshot
@@ -146,8 +154,17 @@ extension SignaturePad {
                 let point = pointForTouch(touch)
 
                 let line = painter.addLine()
+                // configure the options
+                if let smoothLine = line as? SmoothLine {
+                    smoothLine.maxWidth = maxWidth
+                    smoothLine.minWidth = minWidth
+                    smoothLine.velocityFilterWeight = velocityFilterWeight
+                    smoothLine.minDistance = minDistance
+                }
+
                 lines[touch] = line
                 line.start(context: context, point: point)
+
 
                 if let painter = debugPainter {
                     let debugLine = painter.addLine()

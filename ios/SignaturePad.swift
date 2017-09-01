@@ -48,7 +48,19 @@ final class SignaturePad: UIView {
         removeObserver(self, forKeyPath: "frame")
     }
 
-    func initPad() {
+    /// Clear signature
+    func clear() {
+        dirtyRect = nil
+        frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        lines = [:]
+        if debug {
+            debugLines = [:]
+            debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        }
+        setNeedsDisplay()
+    }
+
+    private func initPad() {
         painter = SmoothSignaturePainter()
         painter.updateDirtyRect = onUpdateDirtyRect
         frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
@@ -62,7 +74,6 @@ final class SignaturePad: UIView {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "frame") {
             let oldCanvas = frozenCanvas
-            // TODO: copy image from original canvas
             frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
             if let canvas = oldCanvas {
                 let origin = CGPoint(

@@ -14,6 +14,11 @@ final class SignaturePad: UIView {
     fileprivate var painter: SignaturePainter!
     fileprivate var dirtyRect: CGRect?
 
+    fileprivate var debugFrozenCanvas: FrozenCanvas!
+    fileprivate var debugLines: [UITouch: Line] = [:]
+    fileprivate var debugPainter: SignaturePainter?
+
+    /// Enable debugging mode?
     var debug: Bool = false {
         didSet {
             if debug {
@@ -22,9 +27,12 @@ final class SignaturePad: UIView {
             }
         }
     }
-    fileprivate var debugFrozenCanvas: FrozenCanvas!
-    fileprivate var debugLines: [UITouch: Line] = [:]
-    fileprivate var debugPainter: SignaturePainter?
+    /// Sketch color
+    var color = UIColor.black {
+        didSet {
+            painter.color = color
+        }
+    }
 
     var frozenImage: CGImage {
         return frozenCanvas.snapshot
@@ -62,6 +70,7 @@ final class SignaturePad: UIView {
 
     private func initPad() {
         painter = SmoothSignaturePainter()
+        painter.color = color
         painter.updateDirtyRect = onUpdateDirtyRect
         frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
         addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)

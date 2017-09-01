@@ -21,8 +21,11 @@ final class SmoothLine: Line {
     private var lastVelocity: CGFloat = 0
     private var lastWidth: CGFloat = 0.5
 
-    init(updateDirtyRect: @escaping UpdateDirtyRect) {
+    private let color: UIColor
+
+    init(updateDirtyRect: @escaping UpdateDirtyRect, color: UIColor) {
         self.updateDirtyRect = updateDirtyRect
+        self.color = color
     }
 
     func start(context: CGContext, point: Point) {
@@ -54,8 +57,7 @@ final class SmoothLine: Line {
             return
         }
         context.saveGState()
-        // TODO: make it configurable?
-        context.setFillColor(UIColor.black.cgColor)
+        context.setFillColor(color.cgColor)
 
         let widths = calculateCurveWidths(startPoint: points[1], endPoint: points[2])
 
@@ -232,10 +234,11 @@ final class SmoothLine: Line {
 /// based on https://medium.com/square-corner-blog/smoother-signatures-be64515adb33
 /// and reference implementation at https://github.com/szimek/signature_pad
 final class SmoothSignaturePainter: SignaturePainter {
+    var color = UIColor.black
     var updateDirtyRect: UpdateDirtyRect?
     
     func addLine() -> Line {
-        return SmoothLine(updateDirtyRect: onUpdateDirtyRect)
+        return SmoothLine(updateDirtyRect: onUpdateDirtyRect, color: color)
     }
 
     private func onUpdateDirtyRect(rect: CGRect) {

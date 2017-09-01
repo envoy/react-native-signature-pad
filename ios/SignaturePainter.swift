@@ -35,6 +35,8 @@ protocol Line {
 }
 
 protocol SignaturePainter {
+    /// Color of signature stroking
+    var color: UIColor { get set }
     /// Callback will be called when painter update a region and mark it as dirty
     /// (needs to be redrew)
     var updateDirtyRect: UpdateDirtyRect? { get set }

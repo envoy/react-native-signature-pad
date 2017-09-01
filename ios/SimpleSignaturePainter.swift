@@ -10,12 +10,14 @@ import UIKit
 
 final class SimpleLine: Line {
     private let width: CGFloat
+    private let color: UIColor
     private var lastPoint: Point!
     private var end = false
     private let updateDirtyRect: UpdateDirtyRect
 
-    init(updateDirtyRect: @escaping UpdateDirtyRect, width: CGFloat) {
+    init(updateDirtyRect: @escaping UpdateDirtyRect, color: UIColor, width: CGFloat) {
         self.width = width
+        self.color = color
         self.updateDirtyRect = updateDirtyRect
     }
 
@@ -40,8 +42,7 @@ final class SimpleLine: Line {
 
     private func drawPoint(context: CGContext, point: Point) {
         context.saveGState()
-        // TODO: make it configurable?
-        context.setStrokeColor(UIColor.black.cgColor)
+        context.setStrokeColor(color.cgColor)
         context.setLineCap(.round)
         context.beginPath()
         context.setLineWidth(width)
@@ -63,6 +64,7 @@ final class SimpleLine: Line {
 /// Simple signature painter for drawing signature with the most stupid way, mainly for development
 /// and testing purpose only
 final class SimpleSignaturePainter: SignaturePainter {
+    var color = UIColor.black
     /// Callback will be called when painter update a region and mark it as dirty
     /// (needs to be redrew)
     var updateDirtyRect: UpdateDirtyRect?
@@ -74,7 +76,11 @@ final class SimpleSignaturePainter: SignaturePainter {
     }
     
     func addLine() -> Line {
-        return SimpleLine(updateDirtyRect: onUpdateDirtyRect, width: width)
+        return SimpleLine(
+            updateDirtyRect: onUpdateDirtyRect,
+            color: color,
+            width: width
+        )
     }
 
     private func onUpdateDirtyRect(rect: CGRect) {

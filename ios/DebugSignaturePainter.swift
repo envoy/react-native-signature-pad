@@ -38,6 +38,7 @@ final class DebugLine: Line {
 
 /// Simple signature painter for drawing debug information
 final class DebugSignaturePainter: SignaturePainter {
+    var color = UIColor.black
     var updateDirtyRect: UpdateDirtyRect?
 
     func addLine() -> Line {

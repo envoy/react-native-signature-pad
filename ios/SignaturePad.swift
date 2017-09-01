@@ -61,8 +61,18 @@ final class SignaturePad: UIView {
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "frame") {
+            let oldCanvas = frozenCanvas
             // TODO: copy image from original canvas
             frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+            if let canvas = oldCanvas {
+                let origin = CGPoint(
+                    x: (frame.size.width / 2) - (canvas.size.width / 2),
+                    y: (frame.size.height / 2) - (canvas.size.height / 2)
+                )
+                frozenCanvas.drawOnTop { context in
+                    context.draw(canvas.snapshot, in: CGRect(origin: origin, size: canvas.size))
+                }
+            }
             if debug {
                 debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
             }
@@ -82,7 +92,6 @@ extension SignaturePad {
             context.addRect(rect)
             context.fillPath()
         }*/
-
         context.draw(frozenImage, in: bounds)
         if let canvas = debugFrozenCanvas {
             context.draw(canvas.snapshot, in: bounds)

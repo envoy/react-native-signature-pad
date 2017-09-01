@@ -9,8 +9,15 @@
 import UIKit
 
 final class SmoothLine: Line {
+    var velocityFilterWeight: CGFloat = 0.7
+    var minWidth: CGFloat = 0.5
+    var maxWidth: CGFloat = 2.5
+    
     private var points: [Point] = []
     private var end = false
+
+    private var lastVelocity: CGFloat = 0
+    private var lastWidth: CGFloat = (0.5 + 2.5) / 2
 
     func start(context: CGContext, point: Point) {
         guard points.count == 0 else {
@@ -54,7 +61,10 @@ final class SmoothLine: Line {
             s3: points[3].position
         ).0
 
-        context.setLineWidth(1)
+        let widths = calculateCurveWidths(startPoint: points[1], endPoint: points[2])
+        // TODO: implement custom Bezier drawing method that supports width changing over time
+        context.setLineWidth(widths.1)
+        
         context.move(to: points[1].position)
         context.addCurve(to: points[2].position, control1: c2, control2: c3)
         context.strokePath()
@@ -65,8 +75,43 @@ final class SmoothLine: Line {
         points.removeFirst()
     }
 
-    // Calculate Bezier curve control points for given 3 points
-    // implementation references to
+    private func calculateCurveWidths(startPoint: Point, endPoint: Point) -> (CGFloat, CGFloat) {
+        let newVelocity = SmoothLine.velocityFrom(src: startPoint, to: endPoint) / 1000
+        // A simple lowpass filter to mitigate velocity aberrations.
+        let velocity = (
+            (velocityFilterWeight * newVelocity) +
+            (1 - velocityFilterWeight) * lastVelocity
+        )
+        let newWidth = strokeWidth(velocity: velocity, force: endPoint.force)
+        let result: (CGFloat, CGFloat) = (lastWidth, newWidth)
+        lastVelocity = velocity
+        lastWidth = newWidth
+        return result
+    }
+
+    private func strokeWidth(velocity: CGFloat, force: CGFloat) -> CGFloat {
+        // TODO: also apply force here
+        return max(maxWidth / (velocity + 1), minWidth)
+    }
+
+    /// Calculate distance from source to dest
+    static func distanceFrom(src p0: CGPoint, to p1: CGPoint) -> CGFloat {
+        let vector = CGVector(
+            dx: p1.x - p0.x,
+            dy: p1.y - p0.y
+        )
+        return sqrt((vector.dx * vector.dx) + (vector.dy * vector.dy))
+    }
+
+    /// Calculate velocity from source to dest
+    static func velocityFrom(src p0: Point, to p1: Point) -> CGFloat {
+        let timeDelta = p1.timestamp - p0.timestamp
+        let distance = distanceFrom(src: p0.position, to: p1.position)
+        return distance / CGFloat(timeDelta)
+    }
+
+    /// Calculate Bezier curve control points for given 3 points
+    /// implementation references to
     // https://github.com/szimek/signature_pad/blob/master/src/signature_pad.js#L267-L292
     static func calculateCurveControlPoints(s1: CGPoint, s2: CGPoint, s3: CGPoint) -> (CGPoint, CGPoint) {
         let dx1 = s1.x - s2.x

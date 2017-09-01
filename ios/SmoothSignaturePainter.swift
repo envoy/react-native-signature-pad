@@ -28,7 +28,7 @@ final class SmoothLine: Line {
 
     func add(context: CGContext, point: Point) {
         points.append(point)
-        drawCruve(context: context)
+        drawPoints(context: context)
     }
 
     func end(context: CGContext, point: Point) {
@@ -36,11 +36,11 @@ final class SmoothLine: Line {
             return
         }
         points.append(point)
-        drawCruve(context: context)
+        drawPoints(context: context)
         end = true
     }
 
-    private func drawCruve(context: CGContext) {
+    private func drawPoints(context: CGContext) {
         // TODO: also handle 3 points, make it more responsive
         guard points.count >= 4 else {
             return
@@ -48,7 +48,6 @@ final class SmoothLine: Line {
         context.saveGState()
         // TODO: make it configurable?
         context.setFillColor(UIColor.black.cgColor)
-        context.setLineCap(.round)
 
         let c2 = SmoothLine.calculateCurveControlPoints(
             s1: points[0].position,
@@ -62,17 +61,49 @@ final class SmoothLine: Line {
         ).0
 
         let widths = calculateCurveWidths(startPoint: points[1], endPoint: points[2])
-        // TODO: implement custom Bezier drawing method that supports width changing over time
-        context.setLineWidth(widths.1)
-        
-        context.move(to: points[1].position)
-        context.addCurve(to: points[2].position, control1: c2, control2: c3)
-        context.strokePath()
+        let curve = Bezier(
+            startPoint: points[1].position,
+            endPoint: points[2].position,
+            control1: c2,
+            control2: c3
+        )
+        drawCruve(context: context, curve: curve, startWidth: widths.0, endWidth: widths.1)
+
         context.restoreGState()
 
         // remove first point, keep only 3 in points, so that when the next point comes in, there
         // will be 4 to draw
         points.removeFirst()
+    }
+
+    // Draw Bezier curve with startWidth as the initial and change over time to endWidth as the
+    // final width
+    private func drawCruve(
+        context: CGContext,
+        curve: Bezier,
+        startWidth: CGFloat,
+        endWidth: CGFloat
+    ) {
+        let widthDelta = endWidth - startWidth
+        let drawSteps = UInt(floor(curve.approximatedLength())) * 2
+        for i in 0 ..< drawSteps {
+            // Calculate the Bezier (x, y) coordinate for this step.
+            let t = CGFloat(i) / CGFloat(drawSteps)
+            let ttt = t * t * t
+            let point = curve.point(atTime: t)
+            // TODO: hmmm, not sure why t ^ 3 instead of just t?
+            let width = startWidth + (ttt * widthDelta)
+            // TODO: not sure if this is needed
+            //context.move(to: point)
+            context.addArc(
+                center: point,
+                radius: width,
+                startAngle: 0,
+                endAngle: 2 * CGFloat.pi,
+                clockwise: false
+            )
+            context.fillPath()
+        }
     }
 
     private func calculateCurveWidths(startPoint: Point, endPoint: Point) -> (CGFloat, CGFloat) {

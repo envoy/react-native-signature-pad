@@ -42,7 +42,6 @@ final class SmoothLine: Line {
         // TODO: make it configurable?
         context.setFillColor(UIColor.black.cgColor)
         context.setLineCap(.round)
-        context.beginPath()
 
         let c2 = SmoothLine.calculateCurveControlPoints(
             s1: points[0].position,
@@ -55,9 +54,10 @@ final class SmoothLine: Line {
             s3: points[3].position
         ).0
 
-        context.move(to: points[0].position)
-        context.addCurve(to: points[3].position, control1: c2, control2: c3)
-        context.fillPath()
+        context.setLineWidth(1)
+        context.move(to: points[1].position)
+        context.addCurve(to: points[2].position, control1: c2, control2: c3)
+        context.strokePath()
         context.restoreGState()
 
         // remove first point, keep only 3 in points, so that when the next point comes in, there

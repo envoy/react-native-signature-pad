@@ -24,7 +24,6 @@ final class DebugLine: Line {
     private func drawPoint(context: CGContext, point: Point, color: UIColor) {
         context.saveGState()
         context.setFillColor(color.cgColor)
-        context.beginPath()
         context.addArc(center: point.position, radius: 3, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
         context.fillPath()
         context.restoreGState()

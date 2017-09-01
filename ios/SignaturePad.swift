@@ -11,9 +11,16 @@ import UIKit
 final class SignaturePad: UIView {
     fileprivate var frozenCanvas: FrozenCanvas!
     fileprivate var lines: [UITouch: Line] = [:]
-    fileprivate var painter: SignaturePainter
+    fileprivate var painter: SignaturePainter!
 
-    var debug: Bool = false
+    var debug: Bool = false {
+        didSet {
+            if debug {
+                debugPainter = DebugSignaturePainter()
+                debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+            }
+        }
+    }
     fileprivate var debugFrozenCanvas: FrozenCanvas!
     fileprivate var debugLines: [UITouch: Line] = [:]
     fileprivate var debugPainter: SignaturePainter?
@@ -27,24 +34,23 @@ final class SignaturePad: UIView {
     }
 
     override init(frame: CGRect) {
-        painter = SmoothSignaturePainter()
         super.init(frame: frame)
-        frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
-        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+        initPad()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        painter = SmoothSignaturePainter()
         super.init(coder: aDecoder)
-        frozenCanvas = FrozenCanvas(size: bounds.size, scale: UIScreen.main.scale)
-        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
+        initPad()
     }
 
     deinit {
         removeObserver(self, forKeyPath: "frame")
     }
 
-    func initDebug() {
+    func initPad() {
+        painter = SmoothSignaturePainter()
+        frozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)
+        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.init(rawValue: 0), context: nil)
         if debug {
             debugPainter = DebugSignaturePainter()
             debugFrozenCanvas = FrozenCanvas(size: frame.size, scale: UIScreen.main.scale)

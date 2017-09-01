@@ -120,7 +120,7 @@
 				TargetAttributes = {
 					D84FB86A1F57925700C6607D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = APW3HP5W5M;
+						DevelopmentTeam = B35B3E8LE3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -295,7 +295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = APW3HP5W5M;
+				DEVELOPMENT_TEAM = B35B3E8LE3;
 				INFOPLIST_FILE = SignaturePadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.envoy.SignaturePadApp;
@@ -308,7 +308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = APW3HP5W5M;
+				DEVELOPMENT_TEAM = B35B3E8LE3;
 				INFOPLIST_FILE = SignaturePadApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.envoy.SignaturePadApp;

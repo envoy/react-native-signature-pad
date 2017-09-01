@@ -12,6 +12,7 @@ final class SmoothLine: Line {
     var velocityFilterWeight: CGFloat = 0.7
     var minWidth: CGFloat = 0.5
     var maxWidth: CGFloat = 2.5
+    var minDistance: CGFloat = 0.001
 
     private let updateDirtyRect: UpdateDirtyRect
     private var points: [Point] = []
@@ -28,21 +29,24 @@ final class SmoothLine: Line {
         guard points.count == 0 else {
             return
         }
-        points.append(point)
+        addPoint(context: context, point: point)
     }
 
     func add(context: CGContext, point: Point) {
-        points.append(point)
-        drawPoints(context: context)
+        addPoint(context: context, point: point)
     }
 
     func end(context: CGContext, point: Point) {
         guard !end else {
             return
         }
+        addPoint(context: context, point: point)
+        end = true
+    }
+
+    private func addPoint(context: CGContext, point: Point) {
         points.append(point)
         drawPoints(context: context)
-        end = true
     }
 
     private func drawPoints(context: CGContext) {
@@ -53,36 +57,75 @@ final class SmoothLine: Line {
         // TODO: make it configurable?
         context.setFillColor(UIColor.black.cgColor)
 
-        let c2 = SmoothLine.calculateCurveControlPoints(
-            s1: points[0].position,
-            s2: points[1].position,
-            s3: points[2].position
-        ).1
-        let c3 = SmoothLine.calculateCurveControlPoints(
-            s1: points[1].position,
-            s2: points[2].position,
-            s3: points[3].position
-        ).0
-
         let widths = calculateCurveWidths(startPoint: points[1], endPoint: points[2])
-        let curve = Bezier(
-            startPoint: points[1].position,
-            endPoint: points[2].position,
-            control1: c2,
-            control2: c3
-        )
-        drawCruve(context: context, curve: curve, startWidth: widths.0, endWidth: widths.1)
 
+        // check distance among all points, if we see too close, draw it with simple line instead
+        // as calculateCurveControlPoints cannot fit them
+        let distances = zip(points[0..<points.count - 1], points[1..<points.count])
+            .map({ (lhs, rhs) -> CGFloat in
+                return Utils.distanceFrom(src: lhs.position, to: rhs.position)
+            })
+        var tooClose = false
+        for distance in distances {
+            if distance < minDistance {
+                tooClose = true
+                break
+            }
+        }
+
+        // points are not too close, draw as curve
+        let startPoint = points[1].position
+        let endPoint = points[2].position
+        if !tooClose {
+            let c2 = SmoothLine.calculateCurveControlPoints(
+                s1: points[0].position,
+                s2: points[1].position,
+                s3: points[2].position
+            ).1
+            let c3 = SmoothLine.calculateCurveControlPoints(
+                s1: points[1].position,
+                s2: points[2].position,
+                s3: points[3].position
+            ).0
+            let curve = Bezier(
+                startPoint: startPoint,
+                endPoint: endPoint,
+                control1: c2,
+                control2: c3
+            )
+            drawCruve(
+                context: context,
+                steps: curve.approximatedLength(),
+                startWidth: widths.0,
+                endWidth: widths.1,
+                lineFunc: curve.point
+            )
+        // looks like the point is too close, let's draw a striaght line
+        } else {
+            let dx = endPoint.x - startPoint.x
+            let dy = endPoint.y - startPoint.y
+            let steps = max(Utils.distanceFrom(src: startPoint, to: endPoint), 3)
+            drawCruve(
+                context: context,
+                steps: steps,
+                startWidth: widths.0,
+                endWidth: widths.1
+            ) { (atTime: CGFloat) -> CGPoint in
+                return CGPoint(
+                    x: startPoint.x + dx * atTime,
+                    y: startPoint.y + dy * atTime
+                )
+            }
+        }
         context.restoreGState()
 
         // calculate dirty rect
         let safeWidth = max(widths.0, widths.1)
         let dirtyRect = Utils
-            .pointDirtyRect(point: points[1].position, size: safeWidth)
-            .union(Utils.pointDirtyRect(point: points[2].position, size: safeWidth))
+            .pointDirtyRect(point: startPoint, size: safeWidth)
+            .union(Utils.pointDirtyRect(point: endPoint, size: safeWidth))
             // enlarge the dirty rect a little bit to make it safer
             .insetBy(dx: -10, dy: -10)
-
         updateDirtyRect(dirtyRect)
 
         // remove first point, keep only 3 in points, so that when the next point comes in, there
@@ -90,20 +133,21 @@ final class SmoothLine: Line {
         points.removeFirst()
     }
 
-    // Draw Bezier curve with startWidth as the initial and change over time to endWidth as the
+    // Draw a curve with startWidth as the initial and change over time to endWidth as the
     // final width
     private func drawCruve(
         context: CGContext,
-        curve: Bezier,
+        steps: CGFloat,
         startWidth: CGFloat,
-        endWidth: CGFloat
+        endWidth: CGFloat,
+        lineFunc: ((_ atTime: CGFloat) -> CGPoint)
     ) {
         let widthDelta = endWidth - startWidth
-        let drawSteps = UInt(floor(curve.approximatedLength())) * 2
+        let drawSteps = UInt(floor(steps)) * 2
         for i in 0 ..< drawSteps {
             let t = CGFloat(i) / CGFloat(drawSteps)
             let ttt = t * t * t
-            let point = curve.point(atTime: t)
+            let point = lineFunc(t)
             // TODO: hmmm, not sure why t ^ 3 instead of just t?
             let width = startWidth + (ttt * widthDelta)
             context.addArc(
@@ -133,7 +177,7 @@ final class SmoothLine: Line {
 
     private func strokeWidth(velocity: CGFloat, force: CGFloat) -> CGFloat {
         // TODO: also apply force here
-        return max(maxWidth / (velocity + 1), minWidth)
+        return max((maxWidth / (velocity + 1)) * force, minWidth)
     }
 
     /// Calculate velocity from source to dest

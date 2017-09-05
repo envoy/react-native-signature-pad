@@ -11,6 +11,7 @@
 		D8C1B0351F5F2CA400053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0341F5F2CA400053884 /* Utils.m */; };
 		D8C1B03B1F5F2EB900053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B03A1F5F2EB900053884 /* Bezier.m */; };
 		D8C1B05E1F5F402700053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B05D1F5F402700053884 /* SignaturePad.m */; };
+		D8C1B07F1F5F447D00053884 /* FrozenCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,8 @@
 		D8C1B0501F5F3E8D00053884 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
 		D8C1B05C1F5F402700053884 /* SignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePad.h; sourceTree = "<group>"; };
 		D8C1B05D1F5F402700053884 /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePad.m; sourceTree = "<group>"; };
+		D8C1B07D1F5F447D00053884 /* FrozenCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrozenCanvas.h; sourceTree = "<group>"; };
+		D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrozenCanvas.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,8 @@
 				D8C1B04C1F5F3E1100053884 /* LinePoint.h */,
 				D8C1B0501F5F3E8D00053884 /* Line.h */,
 				D8C1B0421F5F3D1F00053884 /* SignaturePainter.h */,
+				D8C1B07D1F5F447D00053884 /* FrozenCanvas.h */,
+				D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */,
 				D8C1B05C1F5F402700053884 /* SignaturePad.h */,
 				D8C1B05D1F5F402700053884 /* SignaturePad.m */,
 				13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */,
@@ -150,6 +155,7 @@
 				D8C1B0351F5F2CA400053884 /* Utils.m in Sources */,
 				D8C1B03B1F5F2EB900053884 /* Bezier.m in Sources */,
 				13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */,
+				D8C1B07F1F5F447D00053884 /* FrozenCanvas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

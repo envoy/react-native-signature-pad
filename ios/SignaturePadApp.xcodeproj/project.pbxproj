@@ -15,6 +15,7 @@
 		D8C1B07A1F5F433B00053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0721F5F433B00053884 /* Utils.m */; };
 		D8C1B07B1F5F433B00053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0741F5F433B00053884 /* Bezier.m */; };
 		D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0791F5F433B00053884 /* SignaturePad.m */; };
+		D8C1B0821F5F44A700053884 /* FrozenCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0811F5F44A700053884 /* FrozenCanvas.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		D8C1B0771F5F433B00053884 /* SignaturePainter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignaturePainter.h; path = ../SignaturePad/SignaturePainter.h; sourceTree = "<group>"; };
 		D8C1B0781F5F433B00053884 /* SignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignaturePad.h; path = ../SignaturePad/SignaturePad.h; sourceTree = "<group>"; };
 		D8C1B0791F5F433B00053884 /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignaturePad.m; path = ../SignaturePad/SignaturePad.m; sourceTree = "<group>"; };
+		D8C1B0801F5F44A700053884 /* FrozenCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrozenCanvas.h; path = ../SignaturePad/FrozenCanvas.h; sourceTree = "<group>"; };
+		D8C1B0811F5F44A700053884 /* FrozenCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrozenCanvas.m; path = ../SignaturePad/FrozenCanvas.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				D8C1B0751F5F433B00053884 /* LinePoint.h */,
 				D8C1B0761F5F433B00053884 /* Line.h */,
 				D8C1B0771F5F433B00053884 /* SignaturePainter.h */,
+				D8C1B0801F5F44A700053884 /* FrozenCanvas.h */,
+				D8C1B0811F5F44A700053884 /* FrozenCanvas.m */,
 				D8C1B0781F5F433B00053884 /* SignaturePad.h */,
 				D8C1B0791F5F433B00053884 /* SignaturePad.m */,
 				D84FB8721F57925700C6607D /* Main.storyboard */,
@@ -165,6 +170,7 @@
 				D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */,
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
 				D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */,
+				D8C1B0821F5F44A700053884 /* FrozenCanvas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

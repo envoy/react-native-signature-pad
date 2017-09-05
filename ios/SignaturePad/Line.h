@@ -18,6 +18,6 @@ typedef NS_ENUM(NSInteger, PointType) {
 @protocol Line
 
 /// Add point to the line
-- (void) addPoint:(LinePoint)point type:(PointType)type context:(CGContext)context ;
+- (void) addPoint:(LinePoint)point type:(PointType)type context:(CGContextRef)context ;
 
 @end

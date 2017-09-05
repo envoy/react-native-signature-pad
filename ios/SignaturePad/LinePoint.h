@@ -23,4 +23,4 @@ struct LinePoint {
     /// Azimuth angle of the point, for Apple Pencil only
     CGFloat azimuthAngle;
 };
-
+typedef struct LinePoint LinePoint;

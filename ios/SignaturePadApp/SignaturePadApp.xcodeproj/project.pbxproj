@@ -20,6 +20,8 @@
 		D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */; };
 		D85085C41F589E7900A54A81 /* DebugSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */; };
 		D85085C81F58CB6100A54A81 /* SmoothSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */; };
+		D8C1B0381F5F2E7200053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0371F5F2E7200053884 /* Utils.m */; };
+		D8C1B03E1F5F2EC000053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B03D1F5F2EC000053884 /* Bezier.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleSignaturePainter.swift; path = ../../SimpleSignaturePainter.swift; sourceTree = "<group>"; };
 		D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugSignaturePainter.swift; path = ../../DebugSignaturePainter.swift; sourceTree = "<group>"; };
 		D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmoothSignaturePainter.swift; path = ../../SmoothSignaturePainter.swift; sourceTree = "<group>"; };
+		D8C1B0361F5F2E7200053884 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../../Utils.h; sourceTree = "<group>"; };
+		D8C1B0371F5F2E7200053884 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = ../../Utils.m; sourceTree = "<group>"; };
+		D8C1B03C1F5F2EC000053884 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bezier.h; path = ../../Bezier.h; sourceTree = "<group>"; };
+		D8C1B03D1F5F2EC000053884 /* Bezier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bezier.m; path = ../../Bezier.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,10 @@
 			children = (
 				D84FB86E1F57925700C6607D /* AppDelegate.swift */,
 				D84FB8701F57925700C6607D /* ViewController.swift */,
+				D8C1B0361F5F2E7200053884 /* Utils.h */,
+				D8C1B0371F5F2E7200053884 /* Utils.m */,
+				D8C1B03C1F5F2EC000053884 /* Bezier.h */,
+				D8C1B03D1F5F2EC000053884 /* Bezier.m */,
 				D84D966C1F59E43F00E6423D /* Utils.swift */,
 				D84D96681F59E13A00E6423D /* Bezier.swift */,
 				D85085BD1F58943900A54A81 /* SignaturePainter.swift */,
@@ -162,8 +172,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D84FB89B1F57930700C6607D /* SignaturePad.swift in Sources */,
+				D8C1B0381F5F2E7200053884 /* Utils.m in Sources */,
 				D84FB89A1F57930700C6607D /* FrozenCanvas.swift in Sources */,
 				D85085C41F589E7900A54A81 /* DebugSignaturePainter.swift in Sources */,
+				D8C1B03E1F5F2EC000053884 /* Bezier.m in Sources */,
 				D84D96691F59E13A00E6423D /* Bezier.swift in Sources */,
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
 				D84D966D1F59E43F00E6423D /* Utils.swift in Sources */,

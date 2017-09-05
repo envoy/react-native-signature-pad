@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SignaturePadApp/SignaturePadApp.xcodeproj">
+      location = "group:SignaturePadApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "container:SignaturePad.xcodeproj">

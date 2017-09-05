@@ -7,26 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D84D96691F59E13A00E6423D /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D96681F59E13A00E6423D /* Bezier.swift */; };
-		D84D966D1F59E43F00E6423D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D966C1F59E43F00E6423D /* Utils.swift */; };
 		D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB86E1F57925700C6607D /* AppDelegate.swift */; };
 		D84FB8711F57925700C6607D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8701F57925700C6607D /* ViewController.swift */; };
 		D84FB8741F57925700C6607D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84FB8721F57925700C6607D /* Main.storyboard */; };
 		D84FB8761F57925700C6607D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D84FB8751F57925700C6607D /* Assets.xcassets */; };
 		D84FB8791F57925700C6607D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84FB8771F57925700C6607D /* LaunchScreen.storyboard */; };
-		D84FB89A1F57930700C6607D /* FrozenCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8981F57930700C6607D /* FrozenCanvas.swift */; };
-		D84FB89B1F57930700C6607D /* SignaturePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84FB8991F57930700C6607D /* SignaturePad.swift */; };
-		D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BD1F58943900A54A81 /* SignaturePainter.swift */; };
-		D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */; };
-		D85085C41F589E7900A54A81 /* DebugSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */; };
-		D85085C81F58CB6100A54A81 /* SmoothSignaturePainter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */; };
-		D8C1B0381F5F2E7200053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0371F5F2E7200053884 /* Utils.m */; };
-		D8C1B03E1F5F2EC000053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B03D1F5F2EC000053884 /* Bezier.m */; };
+		D8C1B07A1F5F433B00053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0721F5F433B00053884 /* Utils.m */; };
+		D8C1B07B1F5F433B00053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0741F5F433B00053884 /* Bezier.m */; };
+		D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0791F5F433B00053884 /* SignaturePad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D84D96681F59E13A00E6423D /* Bezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bezier.swift; path = ../../Bezier.swift; sourceTree = "<group>"; };
-		D84D966C1F59E43F00E6423D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ../../Utils.swift; sourceTree = "<group>"; };
 		D84FB86B1F57925700C6607D /* SignaturePadApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignaturePadApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D84FB86E1F57925700C6607D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D84FB8701F57925700C6607D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,16 +25,16 @@
 		D84FB8751F57925700C6607D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D84FB8781F57925700C6607D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D84FB87A1F57925700C6607D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D84FB8981F57930700C6607D /* FrozenCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrozenCanvas.swift; path = ../../FrozenCanvas.swift; sourceTree = "<group>"; };
-		D84FB8991F57930700C6607D /* SignaturePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignaturePad.swift; path = ../../SignaturePad.swift; sourceTree = "<group>"; };
-		D85085BD1F58943900A54A81 /* SignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignaturePainter.swift; path = ../../SignaturePainter.swift; sourceTree = "<group>"; };
-		D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleSignaturePainter.swift; path = ../../SimpleSignaturePainter.swift; sourceTree = "<group>"; };
-		D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugSignaturePainter.swift; path = ../../DebugSignaturePainter.swift; sourceTree = "<group>"; };
-		D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmoothSignaturePainter.swift; path = ../../SmoothSignaturePainter.swift; sourceTree = "<group>"; };
-		D8C1B0361F5F2E7200053884 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../../Utils.h; sourceTree = "<group>"; };
-		D8C1B0371F5F2E7200053884 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = ../../Utils.m; sourceTree = "<group>"; };
-		D8C1B03C1F5F2EC000053884 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bezier.h; path = ../../Bezier.h; sourceTree = "<group>"; };
-		D8C1B03D1F5F2EC000053884 /* Bezier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bezier.m; path = ../../Bezier.m; sourceTree = "<group>"; };
+		D8C1B0631F5F40AF00053884 /* SignaturePadApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SignaturePadApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		D8C1B0711F5F433B00053884 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../SignaturePad/Utils.h; sourceTree = "<group>"; };
+		D8C1B0721F5F433B00053884 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = ../SignaturePad/Utils.m; sourceTree = "<group>"; };
+		D8C1B0731F5F433B00053884 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bezier.h; path = ../SignaturePad/Bezier.h; sourceTree = "<group>"; };
+		D8C1B0741F5F433B00053884 /* Bezier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bezier.m; path = ../SignaturePad/Bezier.m; sourceTree = "<group>"; };
+		D8C1B0751F5F433B00053884 /* LinePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinePoint.h; path = ../SignaturePad/LinePoint.h; sourceTree = "<group>"; };
+		D8C1B0761F5F433B00053884 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Line.h; path = ../SignaturePad/Line.h; sourceTree = "<group>"; };
+		D8C1B0771F5F433B00053884 /* SignaturePainter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignaturePainter.h; path = ../SignaturePad/SignaturePainter.h; sourceTree = "<group>"; };
+		D8C1B0781F5F433B00053884 /* SignaturePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignaturePad.h; path = ../SignaturePad/SignaturePad.h; sourceTree = "<group>"; };
+		D8C1B0791F5F433B00053884 /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignaturePad.m; path = ../SignaturePad/SignaturePad.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,22 +69,20 @@
 			children = (
 				D84FB86E1F57925700C6607D /* AppDelegate.swift */,
 				D84FB8701F57925700C6607D /* ViewController.swift */,
-				D8C1B0361F5F2E7200053884 /* Utils.h */,
-				D8C1B0371F5F2E7200053884 /* Utils.m */,
-				D8C1B03C1F5F2EC000053884 /* Bezier.h */,
-				D8C1B03D1F5F2EC000053884 /* Bezier.m */,
-				D84D966C1F59E43F00E6423D /* Utils.swift */,
-				D84D96681F59E13A00E6423D /* Bezier.swift */,
-				D85085BD1F58943900A54A81 /* SignaturePainter.swift */,
-				D85085C31F589E7900A54A81 /* DebugSignaturePainter.swift */,
-				D85085BE1F58943900A54A81 /* SimpleSignaturePainter.swift */,
-				D85085C71F58CB6100A54A81 /* SmoothSignaturePainter.swift */,
-				D84FB8981F57930700C6607D /* FrozenCanvas.swift */,
-				D84FB8991F57930700C6607D /* SignaturePad.swift */,
+				D8C1B0711F5F433B00053884 /* Utils.h */,
+				D8C1B0721F5F433B00053884 /* Utils.m */,
+				D8C1B0731F5F433B00053884 /* Bezier.h */,
+				D8C1B0741F5F433B00053884 /* Bezier.m */,
+				D8C1B0751F5F433B00053884 /* LinePoint.h */,
+				D8C1B0761F5F433B00053884 /* Line.h */,
+				D8C1B0771F5F433B00053884 /* SignaturePainter.h */,
+				D8C1B0781F5F433B00053884 /* SignaturePad.h */,
+				D8C1B0791F5F433B00053884 /* SignaturePad.m */,
 				D84FB8721F57925700C6607D /* Main.storyboard */,
 				D84FB8751F57925700C6607D /* Assets.xcassets */,
 				D84FB8771F57925700C6607D /* LaunchScreen.storyboard */,
 				D84FB87A1F57925700C6607D /* Info.plist */,
+				D8C1B0631F5F40AF00053884 /* SignaturePadApp-Bridging-Header.h */,
 			);
 			path = SignaturePadApp;
 			sourceTree = "<group>";
@@ -171,18 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D84FB89B1F57930700C6607D /* SignaturePad.swift in Sources */,
-				D8C1B0381F5F2E7200053884 /* Utils.m in Sources */,
-				D84FB89A1F57930700C6607D /* FrozenCanvas.swift in Sources */,
-				D85085C41F589E7900A54A81 /* DebugSignaturePainter.swift in Sources */,
-				D8C1B03E1F5F2EC000053884 /* Bezier.m in Sources */,
-				D84D96691F59E13A00E6423D /* Bezier.swift in Sources */,
+				D8C1B07B1F5F433B00053884 /* Bezier.m in Sources */,
+				D8C1B07A1F5F433B00053884 /* Utils.m in Sources */,
+				D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */,
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
-				D84D966D1F59E43F00E6423D /* Utils.swift in Sources */,
 				D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */,
-				D85085C01F58943900A54A81 /* SimpleSignaturePainter.swift in Sources */,
-				D85085C81F58CB6100A54A81 /* SmoothSignaturePainter.swift in Sources */,
-				D85085BF1F58943900A54A81 /* SignaturePainter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +294,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.envoy.SignaturePadApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SignaturePadApp/SignaturePadApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -325,6 +308,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.envoy.SignaturePadApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SignaturePadApp/SignaturePadApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

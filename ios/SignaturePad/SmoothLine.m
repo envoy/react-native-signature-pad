@@ -158,7 +158,7 @@ typedef struct ControlPointTuple ControlPointTuple;
         CGPoint point = lineFunc(t);
         // TODO: hmmm, not sure why t ^ 3 instead of just t?
         CGFloat width = startWidth + (ttt * widthDelta);
-        CGContextAddArc(context, point.x, point.y, width, 0, M_PI_2, false);
+        CGContextAddArc(context, point.x, point.y, width, 0, M_PI * 2, false);
         CGContextFillPath(context);
     }
 }

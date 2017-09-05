@@ -12,8 +12,12 @@
 @implementation SmoothPainter
 
 -(id<Line>)addLine {
-    SmoothLine *line = [SmoothLine new];
-    // TODO:
+    __weak SmoothPainter *weakSelf = self;
+    SmoothLine *line = [[SmoothLine alloc] initWithUpdateDirtyRectBlock:^(CGRect rect) {
+        if (weakSelf && weakSelf.updateDirtyRect) {
+            weakSelf.updateDirtyRect(rect);
+        }
+    }];
     return line;
 }
 

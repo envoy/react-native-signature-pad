@@ -11,4 +11,6 @@
 
 @interface SmoothPainter : NSObject<SignaturePainter>
 
+@property UpdateDirtyRectBlock updateDirtyRect;
+
 @end

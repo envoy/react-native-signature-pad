@@ -26,6 +26,7 @@ typedef struct ControlPointTuple ControlPointTuple;
     NSMutableArray<NSValue *> *linePoints;
     CGFloat lastVelocity;
     CGFloat lastWidth;
+    UpdateDirtyRectBlock updateDirtyRect;
 }
 
 - (instancetype) init {
@@ -39,6 +40,14 @@ typedef struct ControlPointTuple ControlPointTuple;
         lastVelocity = 0;
         lastWidth = _minWidth;
         linePoints = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (instancetype) initWithUpdateDirtyRectBlock:(UpdateDirtyRectBlock)block {
+    self = [self init];
+    if (self) {
+        updateDirtyRect = block;
     }
     return self;
 }
@@ -103,6 +112,21 @@ typedef struct ControlPointTuple ControlPointTuple;
 
 
     CGContextRestoreGState(context);
+
+    // calculate dirty rect
+    CGFloat safeWidth = fmax(widths.startWidth, widths.endWidth);
+     // enlarge the dirty rect a little bit to make it safer
+    CGRect dirtyRect = CGRectInset(
+        CGRectUnion(
+            CGPointDirtyRect(startPoint.position, safeWidth),
+            CGPointDirtyRect(endPoint.position, safeWidth)
+        ),
+        -10, -10
+    );
+
+    if (updateDirtyRect) {
+        updateDirtyRect(dirtyRect);
+    }
 
     // remove first point, keep only 3 in points, so that when the next point comes in, there
     // will be 4 to draw

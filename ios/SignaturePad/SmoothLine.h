@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Line.h"
+#import "SignaturePainter.h"
 
 @interface SmoothLine : NSObject<Line>
+
+- (instancetype) initWithUpdateDirtyRectBlock:(UpdateDirtyRectBlock)block;
 
 @property CGFloat velocityFilterWeight;
 @property CGFloat minWidth;

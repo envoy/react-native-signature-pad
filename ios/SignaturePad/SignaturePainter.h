@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Line.h"
 
+typedef void(^UpdateDirtyRectBlock)(CGRect rect);
+
 @protocol SignaturePainter
+
+/// Block to be called when we update ditry rect on canvas
+@property UpdateDirtyRectBlock updateDirtyRect;
 
 /// Add a line and return it
 - (id<Line>) addLine;

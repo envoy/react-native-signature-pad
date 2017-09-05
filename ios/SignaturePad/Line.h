@@ -10,9 +10,9 @@
 #import "LinePoint.h"
 
 typedef NS_ENUM(NSInteger, PointType) {
-    Start,
-    Between,
-    End
+    PointStart,
+    PointBetween,
+    PointEnd
 };
 
 @protocol Line

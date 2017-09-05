@@ -16,6 +16,8 @@
 		D8C1B07B1F5F433B00053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0741F5F433B00053884 /* Bezier.m */; };
 		D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0791F5F433B00053884 /* SignaturePad.m */; };
 		D8C1B0821F5F44A700053884 /* FrozenCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0811F5F44A700053884 /* FrozenCanvas.m */; };
+		D8C1B08B1F5F534900053884 /* SmoothPainter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B08A1F5F534900053884 /* SmoothPainter.m */; };
+		D8C1B08E1F5F535100053884 /* SmoothLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B08D1F5F535100053884 /* SmoothLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		D8C1B0791F5F433B00053884 /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignaturePad.m; path = ../SignaturePad/SignaturePad.m; sourceTree = "<group>"; };
 		D8C1B0801F5F44A700053884 /* FrozenCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrozenCanvas.h; path = ../SignaturePad/FrozenCanvas.h; sourceTree = "<group>"; };
 		D8C1B0811F5F44A700053884 /* FrozenCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrozenCanvas.m; path = ../SignaturePad/FrozenCanvas.m; sourceTree = "<group>"; };
+		D8C1B0891F5F534900053884 /* SmoothPainter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmoothPainter.h; path = ../SignaturePad/SmoothPainter.h; sourceTree = "<group>"; };
+		D8C1B08A1F5F534900053884 /* SmoothPainter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmoothPainter.m; path = ../SignaturePad/SmoothPainter.m; sourceTree = "<group>"; };
+		D8C1B08C1F5F535100053884 /* SmoothLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmoothLine.h; path = ../SignaturePad/SmoothLine.h; sourceTree = "<group>"; };
+		D8C1B08D1F5F535100053884 /* SmoothLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmoothLine.m; path = ../SignaturePad/SmoothLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 				D8C1B0771F5F433B00053884 /* SignaturePainter.h */,
 				D8C1B0801F5F44A700053884 /* FrozenCanvas.h */,
 				D8C1B0811F5F44A700053884 /* FrozenCanvas.m */,
+				D8C1B08C1F5F535100053884 /* SmoothLine.h */,
+				D8C1B08D1F5F535100053884 /* SmoothLine.m */,
+				D8C1B0891F5F534900053884 /* SmoothPainter.h */,
+				D8C1B08A1F5F534900053884 /* SmoothPainter.m */,
 				D8C1B0781F5F433B00053884 /* SignaturePad.h */,
 				D8C1B0791F5F433B00053884 /* SignaturePad.m */,
 				D84FB8721F57925700C6607D /* Main.storyboard */,
@@ -166,11 +176,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8C1B07B1F5F433B00053884 /* Bezier.m in Sources */,
+				D8C1B08E1F5F535100053884 /* SmoothLine.m in Sources */,
 				D8C1B07A1F5F433B00053884 /* Utils.m in Sources */,
 				D8C1B07C1F5F433B00053884 /* SignaturePad.m in Sources */,
 				D84FB8711F57925700C6607D /* ViewController.swift in Sources */,
 				D84FB86F1F57925700C6607D /* AppDelegate.swift in Sources */,
 				D8C1B0821F5F44A700053884 /* FrozenCanvas.m in Sources */,
+				D8C1B08B1F5F534900053884 /* SmoothPainter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

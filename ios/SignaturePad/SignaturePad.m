@@ -9,9 +9,12 @@
 #import "SignaturePad.h"
 #import "FrozenCanvas.h"
 #import "SignaturePainter.h"
+#import "SmoothPainter.h"
 
 @implementation SignaturePad {
     FrozenCanvas *canvas;
+    id<SignaturePainter> painter;
+    NSMutableDictionary<NSValue *, id<Line>> *lines;
 }
 
 - (instancetype) init {
@@ -43,7 +46,9 @@
 }
 
 - (void) initPad {
+    painter = [SmoothPainter new];
     canvas = [[FrozenCanvas alloc] initWithSize:self.frame.size scale:[UIScreen mainScreen].scale];
+    lines = [NSMutableDictionary dictionary];
     [self addObserver:self forKeyPath:@"frame" options:0 context:nil];
 }
 
@@ -72,13 +77,33 @@
             }
 
             LinePoint point = [SignaturePad pointForTouch:touch];
+            id<Line> line = [painter addLine];
+            NSValue *key = [SignaturePad keyForTouch:touch];
+            lines[key] = line;
 
+            [line addPoint:point type:PointStart context:context];
         }
     }];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [canvas drawOnTop:^(CGContextRef context) {
+        for (UITouch *touch in touches) {
+            // do not process touches from subviews
+            if (touch.view != self) {
+                continue;
+            }
 
+            NSValue *key = [SignaturePad keyForTouch:touch];
+            id<Line> line = lines[key];
+
+            NSArray<UITouch *> *coalescedTouches = [event coalescedTouchesForTouch:touch];
+            for (UITouch *coalescedTouch in coalescedTouches) {
+                LinePoint point = [SignaturePad pointForTouch:coalescedTouch];
+                [line addPoint:point type:PointBetween context:context];
+            }
+        }
+    }];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -86,7 +111,12 @@
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self touchesEnded:touches withEvent:event];
+}
 
++ (NSValue *)keyForTouch:(UITouch *)touch {
+    // TODO: not sure if this is the best way to track UITouch
+    return [NSValue valueWithPointer:(__bridge const void * _Nullable)(touch)];
 }
 
 + (struct LinePoint)pointForTouch:(UITouch *)touch {

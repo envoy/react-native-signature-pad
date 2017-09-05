@@ -12,6 +12,8 @@
 		D8C1B03B1F5F2EB900053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B03A1F5F2EB900053884 /* Bezier.m */; };
 		D8C1B05E1F5F402700053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B05D1F5F402700053884 /* SignaturePad.m */; };
 		D8C1B07F1F5F447D00053884 /* FrozenCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */; };
+		D8C1B0851F5F4DE900053884 /* SmoothPainter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0841F5F4DE900053884 /* SmoothPainter.m */; };
+		D8C1B0881F5F4E2F00053884 /* SmoothLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0871F5F4E2F00053884 /* SmoothLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +43,10 @@
 		D8C1B05D1F5F402700053884 /* SignaturePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePad.m; sourceTree = "<group>"; };
 		D8C1B07D1F5F447D00053884 /* FrozenCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrozenCanvas.h; sourceTree = "<group>"; };
 		D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrozenCanvas.m; sourceTree = "<group>"; };
+		D8C1B0831F5F4DE900053884 /* SmoothPainter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothPainter.h; sourceTree = "<group>"; };
+		D8C1B0841F5F4DE900053884 /* SmoothPainter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothPainter.m; sourceTree = "<group>"; };
+		D8C1B0861F5F4E2F00053884 /* SmoothLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothLine.h; sourceTree = "<group>"; };
+		D8C1B0871F5F4E2F00053884 /* SmoothLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothLine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,10 @@
 				D8C1B0421F5F3D1F00053884 /* SignaturePainter.h */,
 				D8C1B07D1F5F447D00053884 /* FrozenCanvas.h */,
 				D8C1B07E1F5F447D00053884 /* FrozenCanvas.m */,
+				D8C1B0861F5F4E2F00053884 /* SmoothLine.h */,
+				D8C1B0871F5F4E2F00053884 /* SmoothLine.m */,
+				D8C1B0831F5F4DE900053884 /* SmoothPainter.h */,
+				D8C1B0841F5F4DE900053884 /* SmoothPainter.m */,
 				D8C1B05C1F5F402700053884 /* SignaturePad.h */,
 				D8C1B05D1F5F402700053884 /* SignaturePad.m */,
 				13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */,
@@ -151,8 +161,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C1B0851F5F4DE900053884 /* SmoothPainter.m in Sources */,
 				D8C1B05E1F5F402700053884 /* SignaturePad.m in Sources */,
 				D8C1B0351F5F2CA400053884 /* Utils.m in Sources */,
+				D8C1B0881F5F4E2F00053884 /* SmoothLine.m in Sources */,
 				D8C1B03B1F5F2EB900053884 /* Bezier.m in Sources */,
 				13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */,
 				D8C1B07F1F5F447D00053884 /* FrozenCanvas.m in Sources */,

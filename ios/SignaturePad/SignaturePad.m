@@ -104,6 +104,8 @@
             }
         }
     }];
+    // TODO:
+    [self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

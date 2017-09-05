@@ -59,8 +59,12 @@ typedef struct WidthTuple WidthTuple;
     }
 
     WidthTuple widths = [self calculateCurveWidthsForStartPoint:points[1] endPoint:points[2]];
-    // TODO:
-    NSLog(@"xxxxx %@, %f, %f", context, widths.startWidth, widths.endWidth);
+
+    [self drawStraightLineWithContext:context
+                           startPoint:points[1].position
+                             endPoint:points[2].position
+                           startWidth:widths.startWidth
+                             endWidth:widths.endWidth];
 
     CGContextRestoreGState(context);
 
@@ -68,6 +72,75 @@ typedef struct WidthTuple WidthTuple;
     // will be 4 to draw
     [linePoints removeObjectAtIndex:0];
 }
+
+- (void)drawStraightLineWithContext:(CGContextRef)context
+                         startPoint:(CGPoint)startPoint
+                           endPoint:(CGPoint)endPoint
+                         startWidth:(CGFloat)startWidth
+                           endWidth:(CGFloat)endWidth
+{
+    CGVector vector = CGVectorBetween(startPoint, endPoint);
+    NSUInteger steps = CGVectorLength(vector);
+    [self drawLineWithContext:context
+                        steps:steps
+                   startWidth:startWidth
+                     endWidth:endWidth
+                     lineFunc:^CGPoint(CGFloat time) {
+        return CGPointMake(
+           startPoint.x + vector.dx * time,
+           startPoint.y + vector.dy * time
+       );
+    }];
+}
+
+- (void)drawLineWithContext:(CGContextRef)context
+                      steps:(NSUInteger)steps
+                 startWidth:(CGFloat)startWidth
+                   endWidth:(CGFloat)endWidth
+                   lineFunc:(CGPoint (^)(CGFloat))lineFunc
+{
+    CGFloat widthDelta = endWidth - startWidth;
+    NSUInteger drawSteps = floor(steps) * 2;
+    for (NSUInteger i = 0; i < drawSteps; ++i) {
+        CGFloat t = i / (CGFloat)drawSteps;
+        CGFloat ttt = t * t * t;
+        CGPoint point = lineFunc(t);
+        // TODO: hmmm, not sure why t ^ 3 instead of just t?
+        CGFloat width = startWidth + (ttt * widthDelta);
+        CGContextAddArc(context, point.x, point.y, width, 0, M_PI_2, false);
+        CGContextFillPath(context);
+    }
+}
+
+/*
+ // Draw a curve with startWidth as the initial and change over time to endWidth as the
+ // final width
+ private func drawCruve(
+ context: CGContext,
+ steps: CGFloat,
+ startWidth: CGFloat,
+ endWidth: CGFloat,
+ lineFunc: ((_ atTime: CGFloat) -> CGPoint)
+ ) {
+ let widthDelta = endWidth - startWidth
+ let drawSteps = UInt(floor(steps)) * 2
+ for i in 0 ..< drawSteps {
+ let t = CGFloat(i) / CGFloat(drawSteps)
+ let ttt = t * t * t
+ let point = lineFunc(t)
+ // TODO: hmmm, not sure why t ^ 3 instead of just t?
+ let width = startWidth + (ttt * widthDelta)
+ context.addArc(
+ center: point,
+ radius: width,
+ startAngle: 0,
+ endAngle: 2 * CGFloat.pi,
+ clockwise: false
+ )
+ context.fillPath()
+ }
+ }
+*/
 
 - (WidthTuple)calculateCurveWidthsForStartPoint:(LinePoint)startPoint endPoint:(LinePoint)endPoint {
     CGFloat newVelocity = [SmoothLine velocityFrom:startPoint to:endPoint] / 1000;

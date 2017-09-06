@@ -60,30 +60,38 @@
     [self addObserver:self forKeyPath:@"frame" options:0 context:nil];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                        context:(void *)context
+{
     if ([keyPath isEqualToString:@"frame"]) {
         FrozenCanvas *oldCanvas = canvas;
-        canvas = [[FrozenCanvas alloc] initWithSize:self.frame.size scale:[UIScreen mainScreen].scale];
-        if (oldCanvas) {
-            CGPoint origin = CGPointMake(
-                (self.frame.size.width / 2) - (oldCanvas.size.width / 2),
-                (self.frame.size.height / 2) - (oldCanvas.size.height / 2)
-            );
-            CGImageRef snapshot = oldCanvas.snapshot;
-            [canvas drawOnTop:^(CGContextRef context) {
-                CGContextDrawImage(
-                    context,
-                    CGRectMake(
-                        origin.x,
-                        origin.y,
-                        oldCanvas.size.width,
-                        oldCanvas.size.height
-                    ),
-                    snapshot
-                );
-            }];
-            CGImageRelease(snapshot);
+        if (
+            oldCanvas.size.width == self.frame.size.width &&
+            oldCanvas.size.height == self.frame.size.height
+        ) {
+            return;
         }
+        canvas = [[FrozenCanvas alloc] initWithSize:self.frame.size scale:[UIScreen mainScreen].scale];
+        CGPoint origin = CGPointMake(
+            (self.frame.size.width / 2) - (oldCanvas.size.width / 2),
+            (self.frame.size.height / 2) - (oldCanvas.size.height / 2)
+        );
+        CGImageRef snapshot = oldCanvas.snapshot;
+        [canvas drawOnTop:^(CGContextRef context) {
+            CGContextDrawImage(
+                context,
+                CGRectMake(
+                    origin.x,
+                    origin.y,
+                    oldCanvas.size.width,
+                    oldCanvas.size.height
+                ),
+                snapshot
+            );
+        }];
+        CGImageRelease(snapshot);
     }
 }
 

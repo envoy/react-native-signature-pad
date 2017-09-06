@@ -37,7 +37,7 @@
 - (void)initCallback {
    __weak SignaturePadWrapper *weakSelf = self;
     self.onUpdateSignature = ^(CGFloat count, CGFloat length) {
-        if (weakSelf) {
+        if (weakSelf && weakSelf.onChange) {
             weakSelf.onChange(@{
                 @"count": [NSNumber numberWithFloat:count],
                 @"length": [NSNumber numberWithFloat:length]

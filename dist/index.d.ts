@@ -2,13 +2,13 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
 export interface Props {
-    style: ViewStyle;
-    color: string;
-    velocityFilterWeight: number;
-    minWidth: number;
-    maxWidth: number;
-    minDistance: number;
-    onUpdate: (event: {
+    style?: ViewStyle;
+    color?: string;
+    velocityFilterWeight?: number;
+    minWidth?: number;
+    maxWidth?: number;
+    minDistance?: number;
+    onUpdate?: (event: {
         nativeEvent: {
             count: number;
             length: number;

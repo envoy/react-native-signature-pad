@@ -15,20 +15,20 @@ const defaultStyles = StyleSheet.create({
 })
 
 export interface Props {
-  style: ViewStyle
+  style?: ViewStyle
   /// Color of signature stoke
-  color: string
+  color?: string
   /// Lowpass velocity filter factor
-  velocityFilterWeight: number
+  velocityFilterWeight?: number
   /// Minimum stroke width
-  minWidth: number
+  minWidth?: number
   /// Maximum stroke width
-  maxWidth: number
+  maxWidth?: number
   /// The minimum number to be consider too close
-  minDistance: number
+  minDistance?: number
   /// Callback block called when signature updated with line count and total
   /// signature length
-  onUpdate: (
+  onUpdate?: (
     event: {
       nativeEvent: { count: number, length: number, target: number }
     }

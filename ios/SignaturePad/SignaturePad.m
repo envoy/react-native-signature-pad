@@ -69,6 +69,7 @@
                 (self.frame.size.width / 2) - (oldCanvas.size.width / 2),
                 (self.frame.size.height / 2) - (oldCanvas.size.height / 2)
             );
+            CGImageRef snapshot = oldCanvas.snapshot;
             [canvas drawOnTop:^(CGContextRef context) {
                 CGContextDrawImage(
                     context,
@@ -78,11 +79,19 @@
                         oldCanvas.size.width,
                         oldCanvas.size.height
                     ),
-                    oldCanvas.snapshot
+                    snapshot
                 );
             }];
+            CGImageRelease(snapshot);
         }
     }
+}
+
+- (void)clear {
+    canvas = [[FrozenCanvas alloc] initWithSize:self.frame.size scale:[UIScreen mainScreen].scale];
+    lines = [NSMutableDictionary dictionary];
+    dirtyRect = nil;
+    [self setNeedsDisplay];
 }
 
 // MARK: Handle drawing
@@ -96,7 +105,9 @@
         CGContextAddRect(context, rect);
         CGContextFillPath(context);
     }*/
-    CGContextDrawImage(context, self.bounds, canvas.snapshot);
+    CGImageRef snapshot = canvas.snapshot;
+    CGContextDrawImage(context, self.bounds, snapshot);
+    CGImageRelease(snapshot);
 }
 
 - (void)onUpdateDirtyRect:(CGRect)rect {

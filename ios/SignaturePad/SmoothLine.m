@@ -27,6 +27,7 @@ typedef struct ControlPointTuple ControlPointTuple;
     CGFloat lastVelocity;
     CGFloat lastWidth;
     UpdateDirtyRectBlock updateDirtyRect;
+    BOOL ended;
 }
 
 - (instancetype) init {
@@ -37,6 +38,7 @@ typedef struct ControlPointTuple ControlPointTuple;
         _maxWidth = 2.5;
         _minDistance = 0.001;
         _color = [UIColor blackColor];
+        ended = NO;
         lastVelocity = 0;
         lastWidth = _minWidth;
         linePoints = [NSMutableArray array];
@@ -55,6 +57,12 @@ typedef struct ControlPointTuple ControlPointTuple;
 - (void)addPoint:(LinePoint)point type:(PointType)type context:(CGContextRef)context {
     if (type == PointStart && linePoints.count) {
         return;
+    }
+    if (type == PointEnd) {
+        if (ended) {
+            return;
+        }
+        ended = YES;
     }
     [linePoints addObject:[NSValue value:&point withObjCType:@encode(LinePoint)]];
     [self drawPointsWithContext:context];

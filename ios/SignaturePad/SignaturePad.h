@@ -10,4 +10,7 @@
 
 @interface SignaturePad : UIView
 
+/// Clear signature pad
+- (void)clear;
+
 @end

@@ -12,7 +12,7 @@
     CGContextRef context;
 }
 
--(instancetype)initWithSize:(CGSize)size scale:(CGFloat)scale {
+- (instancetype)initWithSize:(CGSize)size scale:(CGFloat)scale {
     self = [super init];
     if (self) {
         _size = size;
@@ -34,6 +34,10 @@
         CGContextConcatCTM(context, transform);
     }
     return self;
+}
+
+- (void)dealloc {
+    CGContextRelease(context);
 }
 
 - (CGImageRef) snapshot {

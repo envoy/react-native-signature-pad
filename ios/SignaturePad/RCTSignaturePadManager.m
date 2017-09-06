@@ -28,10 +28,10 @@ RCT_EXPORT_METHOD(clear:(nonnull NSNumber *)reactTag) {
 }
 
 RCT_EXPORT_METHOD(capture:(nonnull NSNumber *)reactTag
-                  method:(NSString *)method
+                   method:(NSString *)method
                   details:(NSDictionary *)details
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
 {
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, SignaturePadWrapper *> *viewRegistry) {
@@ -43,14 +43,38 @@ RCT_EXPORT_METHOD(capture:(nonnull NSNumber *)reactTag
          }
 
          CGImageRef image = [view capture];
-         if ([method isEqualToString:@"base64"]) {
-             NSData *imageData = UIImagePNGRepresentation((__bridge UIImage * _Nonnull)(image));
-             resolve([imageData base64EncodedStringWithOptions:0]);
-         } else {
-             NSError *error = nil;
-             reject([NSString stringWithFormat:@"Unsupported method %@", method], @"", error);
+         UIImage *uiImage = nil;
+         @try {
+             uiImage = [UIImage imageWithCGImage:image];
+         } @finally {
+             CGImageRelease(image);
          }
-         CGImageRelease(image);
+         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+             NSData *imageData = UIImagePNGRepresentation(uiImage);
+             if ([method isEqualToString:@"base64"]) {
+                 NSString *base64String = [imageData base64EncodedStringWithOptions:0];
+                 resolve(base64String);
+             } else if ([method isEqualToString:@"file"]) {
+                 if (!details) {
+                     reject(@"details-missing", @"Need to provide details for file method", nil);
+                     return;
+                 }
+                 NSString *path = details[@"path"];
+                 if (!path) {
+                     reject(@"path-missing", @"path is missing in details for file method", nil);
+                     return;
+                 }
+                 [imageData writeToFile:path atomically:YES];
+                 resolve([NSNull null]);
+             } else {
+                 NSError *error = nil;
+                 reject(
+                    @"bad-method",
+                    [NSString stringWithFormat:@"Unsupported method %@", method],
+                    error
+                );
+             }
+         });
      }];
 }
 

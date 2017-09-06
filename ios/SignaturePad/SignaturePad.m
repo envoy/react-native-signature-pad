@@ -17,6 +17,7 @@
     id<SignaturePainter> painter;
     NSMutableDictionary<NSValue *, id<Line>> *lines;
     NSValue *dirtyRect;
+    CGFloat finalizedSignatureLength;
 }
 
 - (instancetype) init {
@@ -49,6 +50,8 @@
     _maxWidth = 2.5;
     _minDistance = 0.001;
     _color = [UIColor blackColor];
+    finalizedSignatureLength = 0;
+    _lineCount = 0;
     dirtyRect = nil;
     painter = [SmoothPainter new];
     __weak SignaturePad *weakSelf = self;
@@ -100,7 +103,18 @@
     canvas = [[FrozenCanvas alloc] initWithSize:self.frame.size scale:[UIScreen mainScreen].scale];
     lines = [NSMutableDictionary dictionary];
     dirtyRect = nil;
+    finalizedSignatureLength = 0;
+    _lineCount = 0;
     [self setNeedsDisplay];
+}
+
+- (CGFloat)getSignatureLength {
+    CGFloat notFinalizedLength = 0;
+    for (NSValue *value in lines) {
+        id<Line> line = lines[value];
+        notFinalizedLength += line.length;
+    }
+    return finalizedSignatureLength + notFinalizedLength;
 }
 
 // MARK: Handle drawing
@@ -159,9 +173,12 @@
             }
 
             [line addPoint:point type:PointStart context:context];
+
+            _lineCount += 1;
         }
     }];
     [self updateNeedsDisplay];
+    [self notifySignatureUpdate];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -183,6 +200,7 @@
         }
     }];
     [self updateNeedsDisplay];
+    [self notifySignatureUpdate];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -202,10 +220,18 @@
                 [line addPoint:point type:PointEnd context:context];
             }
 
+            finalizedSignatureLength += line.length;
             [lines removeObjectForKey:key];
         }
     }];
     [self updateNeedsDisplay];
+    [self notifySignatureUpdate];
+}
+
+- (void)notifySignatureUpdate {
+    if(self.signatureUpdate) {
+        self.signatureUpdate(self.lineCount, self.signatureLength);
+    }
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

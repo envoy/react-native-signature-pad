@@ -38,6 +38,7 @@ typedef struct ControlPointTuple ControlPointTuple;
         _maxWidth = 2.5;
         _minDistance = 0.001;
         _color = [UIColor blackColor];
+        _length = 0;
         ended = NO;
         lastVelocity = 0;
         lastWidth = _minWidth;
@@ -148,7 +149,9 @@ typedef struct ControlPointTuple ControlPointTuple;
                            endWidth:(CGFloat)endWidth
 {
     CGVector vector = CGVectorBetween(startPoint, endPoint);
-    NSUInteger steps = fmax(CGVectorLength(vector), 1);
+    CGFloat length = CGVectorLength(vector);
+    _length += length;
+    NSUInteger steps = fmax(length, 1);
     [self drawLineWithContext:context
                         steps:steps
                    startWidth:startWidth
@@ -166,7 +169,9 @@ typedef struct ControlPointTuple ControlPointTuple;
                       startWidth:(CGFloat)startWidth
                         endWidth:(CGFloat)endWidth
 {
-    NSUInteger steps = fmax([curve approximatedLengthWithSteps:10], 1);
+    CGFloat length = [curve approximatedLengthWithSteps:10];
+    NSUInteger steps = fmax(length, 1);
+    _length += length;
     [self drawLineWithContext:context
                         steps:steps
                    startWidth:startWidth

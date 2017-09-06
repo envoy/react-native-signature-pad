@@ -13,6 +13,7 @@
 
 - (instancetype) initWithUpdateDirtyRectBlock:(UpdateDirtyRectBlock)block;
 
+@property (readonly) CGFloat length;
 @property CGFloat velocityFilterWeight;
 @property CGFloat minWidth;
 @property CGFloat maxWidth;

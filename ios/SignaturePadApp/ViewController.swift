@@ -12,8 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // pad.debug = ProcessInfo.processInfo.environment["DEBUG"] == "1"
-        // Do any additional setup after loading the view, typically from a nib.
+        let signaturePad = view as! SignaturePad
+        signaturePad.signatureUpdate = onUpdateSignature
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +21,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    private func onUpdateSignature (count: CGFloat, length: CGFloat) {
+        print("Signature Update count=\(count), length=\(length)")
+    }
 
 }
 

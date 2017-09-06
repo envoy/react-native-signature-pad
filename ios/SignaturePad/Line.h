@@ -17,6 +17,9 @@ typedef NS_ENUM(NSInteger, PointType) {
 
 @protocol Line
 
+/// Total estimated length of this line
+@property (readonly) CGFloat length;
+
 /// Add point to the line
 - (void) addPoint:(LinePoint)point type:(PointType)type context:(CGContextRef)context ;
 

@@ -23,7 +23,7 @@ typedef void(^UpdateSignatureBlock)(CGFloat count, CGFloat length);
 // Color of stroke
 @property (nonnull) UIColor *color;
 // Callback block called when signature updated
-@property (nullable) UpdateSignatureBlock signatureUpdate;
+@property (nullable) UpdateSignatureBlock onUpdateSignature;
 // Current total length of signature stroke
 @property (readonly, getter=getSignatureLength) CGFloat signatureLength;
 // Current total number of line counts

@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let signaturePad = view as! SignaturePad
-        signaturePad.signatureUpdate = onUpdateSignature
+        signaturePad.onUpdateSignature = onUpdateSignature
     }
 
     override func didReceiveMemoryWarning() {

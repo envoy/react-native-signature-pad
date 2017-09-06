@@ -229,8 +229,8 @@
 }
 
 - (void)notifySignatureUpdate {
-    if(self.signatureUpdate) {
-        self.signatureUpdate(self.lineCount, self.signatureLength);
+    if(self.onUpdateSignature) {
+        self.onUpdateSignature(self.lineCount, self.signatureLength);
     }
 }
 

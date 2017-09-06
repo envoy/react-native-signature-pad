@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13BE3DEE1AC21097009241FE /* RCTSignaturePadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */; };
+		D82F94A11F6095F10012F254 /* SignaturePadWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D82F94A01F6095F10012F254 /* SignaturePadWrapper.m */; };
 		D8C1B0351F5F2CA400053884 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0341F5F2CA400053884 /* Utils.m */; };
 		D8C1B03B1F5F2EB900053884 /* Bezier.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B03A1F5F2EB900053884 /* Bezier.m */; };
 		D8C1B05E1F5F402700053884 /* SignaturePad.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B05D1F5F402700053884 /* SignaturePad.m */; };
@@ -32,6 +33,8 @@
 		134814201AA4EA6300B7C361 /* libSignaturePad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSignaturePad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSignaturePadManager.h; sourceTree = "<group>"; };
 		13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSignaturePadManager.m; sourceTree = "<group>"; };
+		D82F949F1F6095F10012F254 /* SignaturePadWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignaturePadWrapper.h; sourceTree = "<group>"; };
+		D82F94A01F6095F10012F254 /* SignaturePadWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignaturePadWrapper.m; sourceTree = "<group>"; };
 		D8C1B0331F5F2CA400053884 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		D8C1B0341F5F2CA400053884 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		D8C1B0391F5F2EB900053884 /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				D8C1B0841F5F4DE900053884 /* SmoothPainter.m */,
 				D8C1B05C1F5F402700053884 /* SignaturePad.h */,
 				D8C1B05D1F5F402700053884 /* SignaturePad.m */,
+				D82F949F1F6095F10012F254 /* SignaturePadWrapper.h */,
+				D82F94A01F6095F10012F254 /* SignaturePadWrapper.m */,
 				13BE3DEC1AC21097009241FE /* RCTSignaturePadManager.h */,
 				13BE3DED1AC21097009241FE /* RCTSignaturePadManager.m */,
 			);
@@ -162,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8C1B0851F5F4DE900053884 /* SmoothPainter.m in Sources */,
+				D82F94A11F6095F10012F254 /* SignaturePadWrapper.m in Sources */,
 				D8C1B05E1F5F402700053884 /* SignaturePad.m in Sources */,
 				D8C1B0351F5F2CA400053884 /* Utils.m in Sources */,
 				D8C1B0881F5F4E2F00053884 /* SmoothLine.m in Sources */,

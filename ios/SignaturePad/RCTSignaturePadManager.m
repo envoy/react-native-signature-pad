@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "RCTSignaturePadManager.h"
-#import "SignaturePad.h"
+#import "SignaturePadWrapper.h"
 
 @implementation RCTSignaturePadManager
 
@@ -12,9 +12,10 @@ RCT_EXPORT_VIEW_PROPERTY(minWidth, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(maxWidth, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(minDistance, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(color, UIColor)
+RCT_EXPORT_VIEW_PROPERTY(onUpdate, RCTBubblingEventBlock)
 
 - (UIView *)view {
-  return [[SignaturePad alloc] init];
+  return [[SignaturePadWrapper alloc] init];
 }
 
 @end

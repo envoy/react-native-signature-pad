@@ -12,6 +12,6 @@
 
 @interface SignaturePadWrapper : SignaturePad
 
-@property (nullable, copy) RCTBubblingEventBlock onUpdate;
+@property (nullable, copy) RCTBubblingEventBlock onChange;
 
 @end

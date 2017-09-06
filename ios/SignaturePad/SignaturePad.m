@@ -106,6 +106,7 @@
     finalizedSignatureLength = 0;
     _lineCount = 0;
     [self setNeedsDisplay];
+    [self notifySignatureUpdate];
 }
 
 - (CGFloat)getSignatureLength {

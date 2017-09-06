@@ -109,6 +109,10 @@
     [self notifySignatureUpdate];
 }
 
+- (CGImageRef)capture {
+    return canvas.snapshot;
+}
+
 - (CGFloat)getSignatureLength {
     CGFloat notFinalizedLength = 0;
     for (NSValue *value in lines) {

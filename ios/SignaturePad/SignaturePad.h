@@ -32,4 +32,7 @@ typedef void(^UpdateSignatureBlock)(CGFloat count, CGFloat length);
 /// Clear signature pad
 - (void)clear;
 
+/// Capture signature image
+- (CGImageRef)capture;
+
 @end

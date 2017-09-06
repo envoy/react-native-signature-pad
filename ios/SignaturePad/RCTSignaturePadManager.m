@@ -64,14 +64,18 @@ RCT_EXPORT_METHOD(capture:(nonnull NSNumber *)reactTag
                      reject(@"path-missing", @"path is missing in details for file method", nil);
                      return;
                  }
-                 [imageData writeToFile:path atomically:YES];
-                 resolve([NSNull null]);
-             } else {
                  NSError *error = nil;
+                 [imageData writeToURL:[NSURL fileURLWithPath:path] options:NSDataWritingAtomic error:&error];
+                 if (!error) {
+                     resolve([NSNull null]);
+                 } else {
+                     reject(@"write-file-error", @"Fail to write file", error);
+                 }
+             } else {
                  reject(
                     @"bad-method",
                     [NSString stringWithFormat:@"Unsupported method %@", method],
-                    error
+                    nil
                 );
              }
          });

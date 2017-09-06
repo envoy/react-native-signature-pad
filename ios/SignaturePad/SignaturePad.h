@@ -10,6 +10,12 @@
 
 @interface SignaturePad : UIView
 
+@property CGFloat velocityFilterWeight;
+@property CGFloat minWidth;
+@property CGFloat maxWidth;
+@property CGFloat minDistance;
+@property UIColor *color;
+
 /// Clear signature pad
 - (void)clear;
 

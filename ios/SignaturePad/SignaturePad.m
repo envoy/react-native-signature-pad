@@ -9,6 +9,7 @@
 #import "SignaturePad.h"
 #import "FrozenCanvas.h"
 #import "SignaturePainter.h"
+#import "SmoothLine.h"
 #import "SmoothPainter.h"
 
 @implementation SignaturePad {
@@ -43,6 +44,11 @@
 }
 
 - (void) initPad {
+    _velocityFilterWeight = 0.7;
+    _minWidth = 0.5;
+    _maxWidth = 2.5;
+    _minDistance = 0.001;
+    _color = [UIColor blackColor];
     dirtyRect = nil;
     painter = [SmoothPainter new];
     __weak SignaturePad *weakSelf = self;
@@ -142,6 +148,15 @@
             id<Line> line = [painter addLine];
             NSValue *key = [SignaturePad keyForTouch:touch];
             lines[key] = line;
+
+            if ([(NSObject *)line isKindOfClass:(Class)[SmoothLine class]]) {
+                SmoothLine *smoothLine = (SmoothLine *)line;
+                smoothLine.maxWidth = self.maxWidth;
+                smoothLine.minWidth = self.minWidth;
+                smoothLine.minDistance = self.minDistance;
+                smoothLine.velocityFilterWeight = self.velocityFilterWeight;
+                smoothLine.color = self.color;
+            }
 
             [line addPoint:point type:PointStart context:context];
         }

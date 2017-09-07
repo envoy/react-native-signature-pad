@@ -30,7 +30,10 @@
             kCGImageAlphaPremultipliedLast
         );
 
-        CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);
+        // Scale the image, also make it upside down so that when we save it as PNG, it will be
+        // normalized
+        CGAffineTransform transform = CGAffineTransformMakeScale(scale, -scale);
+        transform = CGAffineTransformTranslate(transform, 0, -size.height);
         CGContextConcatCTM(context, transform);
     }
     return self;

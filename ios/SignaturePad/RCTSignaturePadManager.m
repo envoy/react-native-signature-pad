@@ -45,7 +45,7 @@ RCT_EXPORT_METHOD(capture:(nonnull NSNumber *)reactTag
          CGImageRef image = [view capture];
          UIImage *uiImage = nil;
          @try {
-             uiImage = [UIImage imageWithCGImage:image];
+             uiImage = [UIImage imageWithCGImage:image scale:1.0 orientation:UIImageOrientationUp];
          } @finally {
              CGImageRelease(image);
          }

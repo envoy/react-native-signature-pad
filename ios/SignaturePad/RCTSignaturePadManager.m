@@ -13,7 +13,7 @@ RCT_EXPORT_VIEW_PROPERTY(minWidth, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(maxWidth, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(minDistance, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(color, UIColor)
-RCT_EXPORT_VIEW_PROPERTY(onUpdate, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 
 RCT_EXPORT_METHOD(clear:(nonnull NSNumber *)reactTag) {
     [self.bridge.uiManager addUIBlock:

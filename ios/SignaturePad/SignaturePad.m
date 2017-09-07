@@ -133,6 +133,13 @@
         CGContextAddRect(context, rect);
         CGContextFillPath(context);
     }*/
+
+    // As we draw things in upside down on canvas, let's revert vertically to make it back to
+    // normal
+    CGAffineTransform transform = CGAffineTransformMakeScale(1, -1);
+    transform = CGAffineTransformTranslate(transform, 0, -self.bounds.size.height);
+    CGContextConcatCTM(context, transform);
+    
     CGImageRef snapshot = canvas.snapshot;
     CGContextDrawImage(context, self.bounds, snapshot);
     CGImageRelease(snapshot);

@@ -8,7 +8,7 @@ export interface Props {
     minWidth?: number;
     maxWidth?: number;
     minDistance?: number;
-    onUpdate?: (event: {
+    onChange?: (event: {
         nativeEvent: {
             count: number;
             length: number;

@@ -28,7 +28,7 @@ export interface Props {
   minDistance?: number
   /// Callback block called when signature updated with line count and total
   /// signature length
-  onUpdate?: (
+  onChange?: (
     event: {
       nativeEvent: { count: number, length: number, target: number }
     }

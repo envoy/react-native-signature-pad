@@ -24,7 +24,7 @@ export default class MyComponent extends React.Component {
                 <SignaturePad
                     style={{width: 600, height: 200}}
                     color='red'
-                    onUpdate={this.onUpdate}
+                    onChange={this.onChange}
                     ref={this.onRef}
                 />
                 <TouchableOpacity onPress={this.onClear}>
@@ -44,7 +44,7 @@ export default class MyComponent extends React.Component {
         this.pad = ref
     }
     
-    private onUpdate = (event: any) => {
+    private onChange = (event: any) => {
         const { count, length } = event.nativeEvent
         console.log('Signature pad update', count, length)
     }

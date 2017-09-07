@@ -12,11 +12,59 @@ yarn add @envoy/react-native-signature-pad
 
 ```TypeScript
 import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import SignaturePad from '@envoy/react-native-signature-pad'
 
 export default class MyComponent extends React.Component {
+    private pad: SignaturePad
+
     render () {
-        return (<SignaturePad />)
+        return (
+            <View style={{flex: 1}}>
+                <SignaturePad
+                    style={{width: 600, height: 200}}
+                    color='red'
+                    onUpdate={this.onUpdate}
+                    ref={this.onRef}
+                />
+                <TouchableOpacity onPress={this.onClear}>
+                    <Text>Clear</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.onCaptureBase64}>
+                    <Text>Capture Base64</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.onCaptureFile}>
+                    <Text>Capture file</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+    
+    private onRef = (ref: any) => {
+        this.pad = ref
+    }
+    
+    private onUpdate = (event: any) => {
+        const { count, length } = event.nativeEvent
+        console.log('Signature pad update', count, length)
+    }
+    
+    private onClear = () => {
+        this.pad.clear()
+    }
+    
+    private onCaptureBase64 = () => {
+        this.pad.capture('base64', {})
+            .then(data => {
+                // handle image data here
+            })
+    }
+    
+    private onCaptureFile = () => {
+        this.pad.capture('file', { path: '/path/to/file.png' })
+            .then(_ => {
+                // handle image file here
+            })
     }
 }
 ```

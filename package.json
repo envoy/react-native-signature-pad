@@ -1,11 +1,9 @@
 {
-  "name": "signature-pad",
+  "name": "@envoy/react-native-signature-pad",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "keywords": [
-    "react-native"
-  ],
+  "keywords": ["react-native"],
   "license": "MIT",
   "author": {
     "name": "Fang-Pen Lin",

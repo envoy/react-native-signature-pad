@@ -41,7 +41,7 @@ typedef struct ControlPointTuple ControlPointTuple;
         _length = 0;
         ended = NO;
         lastVelocity = 0;
-        lastWidth = _minWidth;
+        lastWidth = -1;
         linePoints = [NSMutableArray array];
     }
     return self;
@@ -212,7 +212,7 @@ typedef struct ControlPointTuple ControlPointTuple;
     CGFloat newWidth = [self strokeWidthForVelocity:velocity force:effectiveForce];
 
     WidthTuple result;
-    result.startWidth = lastWidth;
+    result.startWidth = lastWidth >= 0 ? lastWidth : newWidth;
     result.endWidth = newWidth;
 
     lastVelocity = velocity;

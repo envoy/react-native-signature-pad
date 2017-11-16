@@ -6,6 +6,7 @@ This is a signature pad component for React Native. It only supports iOS for now
 
 ```bash
 yarn add @envoy/react-native-signature-pad
+react-native link @envoy/react-native-signature-pad 
 ```
 
 ## Usage

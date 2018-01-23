@@ -15,6 +15,7 @@ export interface Props {
             target: number;
         };
     }) => void;
+    testID?: string;
 }
 export default class SignaturePad extends React.Component<Props> {
     private signaturePad;

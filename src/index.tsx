@@ -33,6 +33,8 @@ export interface Props {
       nativeEvent: { count: number, length: number, target: number }
     }
   ) => void
+  /// ID for UI automatic testing
+  testID?: string
 }
 
 export default class SignaturePad extends React.Component<Props> {
